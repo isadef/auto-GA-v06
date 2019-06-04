@@ -1,19 +1,27 @@
 package uitesting.upb.org.handlewebsite;
 
 import uitesting.upb.org.managefile.PropertyAccesor;
-import uitesting.upb.org.managepage.google.home.Home;
+import uitesting.upb.org.managepage.personalwallet.AccountCreator;
+import uitesting.upb.org.managepage.personalwallet.AccountMenu;
+import uitesting.upb.org.managepage.personalwallet.MainMenu;
+import uitesting.upb.org.managepage.personalwallet.ReportsPage;
 import uitesting.upb.org.webdrivermanager.DriverManager;
 
 /**
  * @autor Marcelo Garay
  */
 public class LoadPage {
-    public static Home loadGoogleHome(){
+    public static AccountCreator loadHomeMenu(){
         DriverManager.getInstance().getWebDriver().navigate().to(PropertyAccesor.getInstance().getBaseURL());
-        return new Home();
+        return new AccountCreator();
     }
 
     public static void main(String[] args) {
-        loadGoogleHome().searchTextAndClickSearchButton("UPB cochabamba");
+        String newAccountName = "Test";
+        AccountCreator creator = loadHomeMenu();
+        creator.writeAccountName(newAccountName).pressAddButton();
+        AccountMenu menu = new AccountMenu();
+        MainMenu mainMenu = menu.clickButtonById(newAccountName);
+        ReportsPage reports = mainMenu.clickReportsButton();
     }
 }

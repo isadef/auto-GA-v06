@@ -7,7 +7,7 @@ import uitesting.upb.org.webdrivermanager.DriverManager;
 /**
  * @autor Marcelo Garay
  */
-public class BasePage {
+public abstract class BasePage {
     protected WebDriver webDriver;
 
     public BasePage() {
