@@ -1,27 +1,23 @@
 package uitesting.upb.org.handlewebsite;
 
+import uitesting.upb.org.manageevents.Events;
 import uitesting.upb.org.managefile.PropertyAccesor;
-import uitesting.upb.org.managepage.personalwallet.AccountCreator;
-import uitesting.upb.org.managepage.personalwallet.AccountMenu;
-import uitesting.upb.org.managepage.personalwallet.MainMenu;
-import uitesting.upb.org.managepage.personalwallet.ReportsPage;
+import uitesting.upb.org.managepage.nasa.EarthMenu;
+import uitesting.upb.org.managepage.nasa.MainLeftMenu;
 import uitesting.upb.org.webdrivermanager.DriverManager;
 
 /**
  * @autor Marcelo Garay
  */
 public class LoadPage {
-    public static AccountCreator loadHomeMenu(){
+    public static MainLeftMenu loadMainLeftMenu(){
         DriverManager.getInstance().getWebDriver().navigate().to(PropertyAccesor.getInstance().getBaseURL());
-        return new AccountCreator();
+        Events.maximizeWindow();
+        return new MainLeftMenu();
     }
 
     public static void main(String[] args) {
-        String newAccountName = "Test";
-        AccountCreator creator = loadHomeMenu();
-        creator.writeAccountName(newAccountName).pressAddButton();
-        AccountMenu menu = new AccountMenu();
-        MainMenu mainMenu = menu.clickButtonById(newAccountName);
-        ReportsPage reports = mainMenu.clickReportsButton();
+        EarthMenu earthMenu = loadMainLeftMenu().clickFirstApiListingLink().clickSecondApiListingLink();
+        System.out.println(earthMenu.clickEarthLink().clickImaginery().getText());
     }
 }
