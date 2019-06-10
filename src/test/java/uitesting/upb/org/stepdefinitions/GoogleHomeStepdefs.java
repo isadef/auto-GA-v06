@@ -6,12 +6,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.manageevents.Events;
-import uitesting.upb.org.managepage.personalwallet.AccountCreator;
-
-import static uitesting.upb.org.manageevents.Events.isWebElementVisible;
+import uitesting.upb.org.managepage.personalwallet.AccountHomeMenu;
 
 public class GoogleHomeStepdefs {
-    private AccountCreator creator;
+    private AccountHomeMenu creator;
     private WebElement searchFieldText;
 
     @Given("^Google page is loaded$")
