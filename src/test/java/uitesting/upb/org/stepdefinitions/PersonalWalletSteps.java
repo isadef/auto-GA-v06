@@ -3,6 +3,7 @@ package uitesting.upb.org.stepdefinitions;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.personalwallet.AccountHomeMenu;
 import uitesting.upb.org.managepage.personalwallet.MainMenu;
@@ -35,11 +36,6 @@ public class PersonalWalletSteps {
 
     @Then("^El titulo es \"(.*)\"$")
     public void assertPageTitle(String title) {
-        if (reportsPage.getTitle().equals(title)) {
-            System.out.println("Assert is true");
-        }
-        else {
-            System.out.println("Assert is false");
-        }
+        Assert.assertEquals(reportsPage.getTitle(), title);
     }
 }
