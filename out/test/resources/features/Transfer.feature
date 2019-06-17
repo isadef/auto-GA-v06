@@ -8,7 +8,7 @@ Feature: Trasnfer Between Accounts
       And clicked 'Add' button on 'AccountHomeMenu'
     Given  clicked "Test" button on 'AccountHomeMenu'
 
-  Scenario: Error Message is displayed when 'Budget Available in Bs' has 0 amount
+  Scenario: Error Message is displayed when transfering with 0 amount in  'Budget Available in Bs'
     Given clicked the 'Transfer' Button on 'MainMenu' page
     And select the "Destination" value on 'Destination Account' selector on 'Transfer' Page
     And filled 'amount in BS' text field with "50" on 'Transfer' page
