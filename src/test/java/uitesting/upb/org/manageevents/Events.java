@@ -66,9 +66,9 @@ public class Events {
     public static int getSelectorNumberOptions (Select select) {
         return select.getOptions().size();
     }
-
-    public static void hoverElementAndSelectLink(WebElement element, By.ByXPath selector) {
+    
+    public static void hoverElement(WebElement element) {
         Actions action = new Actions(DriverManager.getInstance().getWebDriver());
-        action.moveToElement(element).moveToElement(DriverManager.getInstance().getWebDriver().findElement(selector)).click().build().perform();
+        action.moveToElement(element).perform();
     }
 }

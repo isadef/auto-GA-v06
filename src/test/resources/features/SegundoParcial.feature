@@ -5,3 +5,4 @@ Feature: Shoes price
 
   Scenario: Test 'XX' shoes price matches price from initial price
     Given Hover 'HOMBRE' link on 'navbar' page
+    Given Click 'Fubtol' link

@@ -371,4 +371,9 @@ public class PersonalWalletSteps {
     public void theNavbarIsLoaded() {
         navbar = LoadPage.loadNavBar();
     }
+
+    @Given("^Click 'Fubtol' link$")
+    public void clickFubtolLink() {
+        navbar.clickFutbol();
+    }
 }

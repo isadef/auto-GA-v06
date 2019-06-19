@@ -10,13 +10,14 @@ public class Navbar extends BasePage {
     @FindBy(xpath = "//a[text()='HOMBRE']")
     private WebElement hombreLink;
 
-    private By.ByXPath bySelector;
+    @FindBy(xpath = "//div[@class='main-line']//div[@class='col-5'][2]//a[text()='Fútbol']")
+    private WebElement futbol;
 
-    public void createSelectorForFutbol() {
-        bySelector = new By.ByXPath("//div[@class='main-line']//div[@class='col-5'][2]//a[text()='Fútbol']");
+    public void clickFutbol() {
+        Events.click(hombreLink);
     }
 
     public void hoverOverHombreLink() {
-        Events.hoverElementAndSelectLink(hombreLink, bySelector);
+        Events.hoverElement(hombreLink);
     }
 }
