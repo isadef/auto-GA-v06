@@ -17,6 +17,8 @@ public class CarritoPage extends BasePage {
     @FindBy(xpath = "//*[contains(@data-ci-test-id,'orderTotalCartValue')]")
     private WebElement totalField;
 
+    @FindBy(xpath = "//*[@id=\"shipment_wrapper_0_0\"]/div[@class=\"co-quantitycolumn left\"]/div/div/a/span")
+    private WebElement quantityField;
 
     public String getTitleText(){
         return Events.getText(titleField);
@@ -30,6 +32,10 @@ public class CarritoPage extends BasePage {
     public  String getTotalFieldText(){
         return  Events.getText(totalField);
 
+    }
+
+    public String getQuantityField(){
+        return Events.getText(quantityField);
     }
 
 

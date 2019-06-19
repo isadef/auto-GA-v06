@@ -497,19 +497,24 @@ public class PersonalWalletSteps {
         carritoPage = calzadoPage.clickIrAlCarritoButton();
     }
 
-    @And("^search 'titlefield' with \"([^\"]*)\" on 'carritopage'$")
-    public void searchTitlefieldWithOnCarritopage(String title) {
+
+    @And("^'quantity' field is displayed with \"([^\"]*)\" on 'calzado page'$")
+    public void quantityFieldIsDisplayedWithOnCalzadoPage(String quantity){
+       Assert.assertEquals(carritoPage.getQuantityField(),quantity);
+    }
+
+    @And("^'titlefield' with \"([^\"]*)\" is displayed on 'carritopage'$")
+    public void titlefieldWithIsDisplayedOnCarritopage(String title) {
         Assert.assertEquals(carritoPage.getTitleText(),title);
     }
 
-    @And("^search 'totalproductofield' with \"([^\"]*)\" on 'carritopage'$")
-    public void searchTotalproductofieldWithOnCarritopage(String totalproduct)  {
+    @And("^'totalproductofield' is displayed with \"([^\"]*)\" on 'carritopage'$")
+    public void totalproductofieldIsDisplayedWithOnCarritopage(String totalproduct)  {
         Assert.assertEquals(carritoPage.getTotalProductFieldText(),totalproduct);
     }
 
-
-    @And("^search 'totalfield' with \"([^\"]*)\" on 'carritopage'$")
-    public void searchTotalfieldWithOnCarritopage(String total) {
-       Assert.assertEquals(carritoPage.getTotalFieldText(),total);
+    @And("^'totalfield' is displayed with \"([^\"]*)\" on 'carritopage'$")
+    public void totalfieldIsDisplayedWithOnCarritopage(String total)  {
+        Assert.assertEquals(carritoPage.getTotalFieldText(),total);
     }
 }
