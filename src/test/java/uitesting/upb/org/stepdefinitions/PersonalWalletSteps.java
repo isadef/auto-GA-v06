@@ -2,6 +2,7 @@ package uitesting.upb.org.stepdefinitions;
 
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -9,6 +10,8 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.adidas.AdidasMainPage;
+import uitesting.upb.org.managepage.adidas.CalzadoPage;
+import uitesting.upb.org.managepage.adidas.CarritoPage;
 import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
@@ -26,8 +29,9 @@ public class PersonalWalletSteps {
     private TransferPage transferPage;
     private IncomePage incomePage;
     private AccountSettingsPage accountSettingsPage;
-    private AdidasMainPage adidasMainPage;
-
+    private AdidasMainPage adidasPage;
+    private CalzadoPage calzadoPage;
+    private CarritoPage carritoPage;
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
         accountHomeMenu.writeAccountName(accountName);
@@ -438,20 +442,74 @@ public class PersonalWalletSteps {
         Assert.assertTrue(transferPage.isTransferSuccessMessageVisible());
     }
 
-    @Given("^hover en 'Hombre LINK' en 'adidasMainPage'$")
-    public void hoverEnHombreLINKEnAdidasMainPage() {
-        adidasMainPage = adidasMainPage.hoverHombreLink();
+    @Given("^hover en 'Hombre LINK' en 'adidasPage'$")
+    public void hoverEnHombreLINKEnAdidasPage() {
+        adidasPage = adidasPage.hoverHombreLink();
 
 
     }
 
-    @And("^click en 'tennis button en 'adidasMainPage'$")
-    public void clickEnTennisButtonEnAdidasMainPage() {
-        adidasMainPage = adidasMainPage.clicktennisbutton();
+    @And("^click en 'tennis button en 'adidasPage'$")
+    public void clickEnTennisButtonEnAdidasPage() {
+        calzadoPage = adidasPage.clicktennisbutton();
     }
 
-    @Given("^adidasMainPage is loaded$")
-    public void adidasmainpageIsLoaded() {
-        adidasMainPage = LoadPage.loadHomePage();
+    @Given("^adidasPage is loaded$")
+    public void adidaspageIsLoaded() {
+        adidasPage = LoadPage.loadHomePage();
+    }
+
+    @Then("^search 'price' from 'tennis button' on 'calzadoPage'$")
+    public void searchPriceFromTennisButtonOnCalzadoPage() {
+        calzadoPage = calzadoPage.isVisiblepriceButton();
+    }
+
+    @And("^click 'calzado Button' on 'calzado page'$")
+    public void clickCalzadoButtonOnCalzadoPage() {
+      calzadoPage = calzadoPage.clickCalzadoButton();
+    }
+
+    @And("^click on 'talla selecto button' on 'calzado page'$")
+    public void clickOnTallaSelectoButtonOnCalzadoPage() {
+        calzadoPage = calzadoPage.clickTallaSelectorButton();
+        
+    }
+
+    @And("^click on 'talla button MX(\\d+)' button on 'calzado page'$")
+    public void clickOnTallaButtonMXButtonOnCalzadoPage(int arg0) {
+        calzadoPage = calzadoPage.clickTallaButton();
+    }
+
+    @And("^click on 'añadir al carrito' button on 'calzado page'$")
+    public void clickOnAñadirAlCarritoButtonOnCalzadoPage() {
+        calzadoPage = calzadoPage.clickAñadirAlCarritoButton();
+    }
+
+    @And("^search 'cantidad' text with \"([^\"]*)\" on 'calzado page'$")
+    public void searchCantidadTextWithOnCalzadoPage(String text) {
+        System.out.println(text + " // "+ calzadoPage.getText());
+        Assert.assertEquals(calzadoPage.getText(),text);
+
+    }
+
+    @And("^click 'ir al carrito' button on 'calzado page'$")
+    public void clickIrAlCarritoButtonOnCalzadoPage() {
+        carritoPage = calzadoPage.clickIrAlCarritoButton();
+    }
+
+    @And("^search 'titlefield' with \"([^\"]*)\" on 'carritopage'$")
+    public void searchTitlefieldWithOnCarritopage(String title) {
+        Assert.assertEquals(carritoPage.getTitleText(),title);
+    }
+
+    @And("^search 'totalproductofield' with \"([^\"]*)\" on 'carritopage'$")
+    public void searchTotalproductofieldWithOnCarritopage(String totalproduct)  {
+        Assert.assertEquals(carritoPage.getTotalProductFieldText(),totalproduct);
+    }
+
+
+    @And("^search 'totalfield' with \"([^\"]*)\" on 'carritopage'$")
+    public void searchTotalfieldWithOnCarritopage(String total) {
+       Assert.assertEquals(carritoPage.getTotalFieldText(),total);
     }
 }

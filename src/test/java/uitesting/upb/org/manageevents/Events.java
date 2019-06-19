@@ -17,10 +17,10 @@ import java.util.concurrent.TimeUnit;
 public class Events {
     public static void click(WebElement webElement){
        // DriverManager.getInstance()
-        DriverManager.getInstance().getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //DriverManager.getInstance().getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        webElement.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div[1]/div[2]/ul/li[2]/a")).click();
-       // DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
+       // webElement.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div[1]/div[2]/ul/li[2]/a")).click();
+        DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
     }
     public static void click(By by){
         DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(by)).click();
@@ -77,10 +77,15 @@ public class Events {
     }
     public static void hoverWebElement(WebElement webElement) {
         Actions action = new Actions( DriverManager.getInstance().getWebDriver());
-        WebElement element = DriverManager.getInstance().getWebDriver().findElement(By.xpath("//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/a"));
-       // action.moveToElement(element).build().perform();
-        action.moveToElement(element).build().perform();
+        WebElement element = DriverManager.getInstance().getWebDriver().findElement(By.xpath("//*[contains(text(),'HOMBRE')]"));
+        action.moveToElement(webElement).build().perform();
     }
+    public  static void showTextElement(WebElement webElement){
+        DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement));
+        System.out.println("\n text: "+ Events.getText(webElement));
+    }
+
+
 
 
 }

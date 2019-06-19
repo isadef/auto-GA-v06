@@ -3,11 +3,12 @@ package uitesting.upb.org.managepage.adidas;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import uitesting.upb.org.manageevents.Events;
+import uitesting.upb.org.managepage.BasePage;
 
-public class AdidasMainPage {
-    @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/a")
+public class AdidasMainPage extends BasePage {
+    @FindBy(xpath = "//*[contains(@manual_cm_sp,'header-_-HOMBRE')]")
     private WebElement hombreLink;
-    @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div[1]/div[2]/ul/li[2]/a")
+    @FindBy(xpath = "//*[contains(@manual_cm_sp,'header-_-hombre-_-tenis-_-fútbol')]")
     private WebElement tennisButton;
 
 
@@ -16,9 +17,9 @@ public class AdidasMainPage {
         return new AdidasMainPage();
     }
 
-    public AdidasMainPage clicktennisbutton() {
+    public CalzadoPage clicktennisbutton() {
         Events.click(tennisButton);
-        return new AdidasMainPage();
+        return new CalzadoPage();
     }
 
 
