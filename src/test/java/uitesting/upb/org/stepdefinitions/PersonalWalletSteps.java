@@ -8,6 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
+import uitesting.upb.org.managepage.adidas.AdidasMainPage;
 import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
@@ -25,6 +26,7 @@ public class PersonalWalletSteps {
     private TransferPage transferPage;
     private IncomePage incomePage;
     private AccountSettingsPage accountSettingsPage;
+    private AdidasMainPage adidasMainPage;
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
@@ -434,5 +436,22 @@ public class PersonalWalletSteps {
     @Then("^search 'Success Message' alert on 'Transfer' page$")
     public void searchSuccessMessageAlertOnTransferPage() {
         Assert.assertTrue(transferPage.isTransferSuccessMessageVisible());
+    }
+
+    @Given("^hover en 'Hombre LINK' en 'adidasMainPage'$")
+    public void hoverEnHombreLINKEnAdidasMainPage() {
+        adidasMainPage = adidasMainPage.hoverHombreLink();
+
+
+    }
+
+    @And("^click en 'tennis button en 'adidasMainPage'$")
+    public void clickEnTennisButtonEnAdidasMainPage() {
+        adidasMainPage = adidasMainPage.clicktennisbutton();
+    }
+
+    @Given("^adidasMainPage is loaded$")
+    public void adidasmainpageIsLoaded() {
+        adidasMainPage = LoadPage.loadHomePage();
     }
 }

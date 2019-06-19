@@ -2,11 +2,13 @@ package uitesting.upb.org.manageevents;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import uitesting.upb.org.webdrivermanager.DriverManager;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @autor Marcelo Garay
@@ -14,7 +16,11 @@ import java.util.List;
 
 public class Events {
     public static void click(WebElement webElement){
-        DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
+       // DriverManager.getInstance()
+        DriverManager.getInstance().getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        webElement.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div[1]/div[2]/ul/li[2]/a")).click();
+       // DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
     }
     public static void click(By by){
         DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(by)).click();
@@ -68,6 +74,12 @@ public class Events {
 
     public static String getText(WebElement webElement) {
         return DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement)).getText();
+    }
+    public static void hoverWebElement(WebElement webElement) {
+        Actions action = new Actions( DriverManager.getInstance().getWebDriver());
+        WebElement element = DriverManager.getInstance().getWebDriver().findElement(By.xpath("//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/a"));
+       // action.moveToElement(element).build().perform();
+        action.moveToElement(element).build().perform();
     }
 
 
