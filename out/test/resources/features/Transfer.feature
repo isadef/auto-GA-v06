@@ -8,15 +8,12 @@ Feature: Trasnfer Between Accounts
       And clicked 'Add' button on 'AccountHomeMenu'
     Given  clicked "Test" button on 'AccountHomeMenu'
 
-<<<<<<< HEAD
   Scenario: Error Message is displayed when 'Budget Available in Bs' has 0 amount
     Given clicked 'Transfer' Button on 'MainMenu' page
     And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
-=======
   Scenario: Error Message is displayed when transfering with 0 amount in  'Budget Available in Bs'
-    Given clicked the 'Transfer' Button on 'MainMenu' page
-    And select the "Destination" value on 'Destination Account' selector on 'Transfer' Page
->>>>>>> rodri
+    Given clicked 'Transfer' Button on 'MainMenu' page
+    And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
     And filled 'amount in BS' text field with "50" on 'Transfer' page
     And click 'Transfer' Button on 'Transfer' page
     Then Search 'Error Message' fail alert on 'Transfer' page
@@ -72,7 +69,7 @@ Feature: Trasnfer Between Accounts
     Given clicked 'Transfer' Button on 'MainMenu' page
     Then check that 'Transfer' Button is visible on 'Transfer' page
 
-  Scenario: 'Budget Available in Bs' field is visible after successfull transfer
+  Scenario: 'Budget Available in Bs' field is visible after successful transfer
     Given click 'Income' button on 'MainMenu' page
       And fill 'income name' field with "Prueba income 1" on 'Income Page'
       And select "Others" values on 'category' selector on 'Income Page'

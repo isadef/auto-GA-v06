@@ -1,7 +1,9 @@
 package uitesting.upb.org.manageevents;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import uitesting.upb.org.webdrivermanager.DriverManager;
@@ -66,9 +68,24 @@ public class Events {
         return select.getOptions().size();
     }
 
-    public static String getText(WebElement webElement) {
-        return DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement)).getText();
+        public static String getText(WebElement webElement) {
+
+            String txt = DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement)).getText();
+            System.out.println(txt + "\n");
+            return DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement)).getText();
+        }
+
+        public static void showText(WebElement webElement){
+            DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement));
+            System.out.println("price: " + webElement.getText());
+        }
+
+    public static void hoverElement(WebElement webElement) {
+        Actions actions = new Actions(DriverManager.getInstance().getWebDriver());
+        actions.moveToElement(webElement).build().perform();
     }
+
+
 
 
 }
