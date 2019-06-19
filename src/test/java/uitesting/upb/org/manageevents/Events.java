@@ -15,6 +15,12 @@ import java.util.List;
  */
 
 public class Events {
+
+    public static void hoverElement(WebElement webElement) {
+        Actions a = new Actions(DriverManager.getInstance().getWebDriver());
+        a.moveToElement(webElement).perform();
+    }
+
     public static void click(WebElement webElement){
         DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
     }

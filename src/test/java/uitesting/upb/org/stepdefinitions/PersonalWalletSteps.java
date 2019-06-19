@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
+import uitesting.upb.org.managepage.adidas.*;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
@@ -15,14 +16,20 @@ import java.util.List;
 
 public class PersonalWalletSteps {
 
+    private Carrito carrito;
+    private AddCartAlert addCartAlert;
     private AccountHomeMenu accountHomeMenu;
-    private Header header;
+    private Navbar navbarAdidas;
+    private ProductView productView;
     private MainMenu mainMenu;
     private ReportsPage reportsPage;
+    private Header header;
+    private Store store;
     private ExpensesPage expensesPage;
     private TransferPage transferPage;
     private IncomePage incomePage;
     private AccountSettingsPage accountSettingsPage;
+    private String storePrice;
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
@@ -441,5 +448,71 @@ public class PersonalWalletSteps {
     @And("^Clear 'Register Expense' fields on 'Expenses' page$")
     public void clearRegisterExpenseFieldsOnExpensesPage() {
         expensesPage = (ExpensesPage) expensesPage.clearRegisterExpenses();
+    }
+
+    @Given("^'adidas' page is loaded$")
+    public void adidasPageIsLoaded() {
+        navbarAdidas = LoadPage.loadAdidasHeader();
+    }
+
+
+    @And("^mouse is hover 'homber' tag on 'NavBar' page$")
+    public void mouseIsHoverHomberTagOnNavBarPage() {
+        navbarAdidas = navbarAdidas.hoverHombreTab();
+    }
+
+    @And("^click 'futbol' button on 'NavBar'$")
+    public void clickFutbolButtonOnNavBar() {
+        store = navbarAdidas.clickFutbolButton();
+    }
+
+    @Then("^Check price of 'Calzado de Futbol Nemezis' on 'store' page$")
+    public void checkPriceOfCalzadoDeFutbolNemezisOnStorePage() {
+        storePrice = store.getPrecio();
+    }
+
+    @And("^Click on 'Calzado de Futbol Nemezis' product on store page$")
+    public void clickOnCalzadoDeFutbolNemezisProductOnStorePage() {
+        productView = store.clickProduct();
+    }
+
+    @Then("^Click 'Elige tu talla' button on 'Product view' page$")
+    public void clickEligeTuTallaButtonOnProductViewPage() {
+        productView = productView.clickEligeTuTalla();
+    }
+
+    @And("^Click 'MX ocho y medio' button on 'Product view' page$")
+    public void clickMXOchoYMedioButtonOnProductViewPage() {
+        productView = productView.clickTalla85();
+    }
+
+    @And("^Click 'Añadir al carrito' button on 'Product view' page$")
+    public void clickAñadirAlCarritoButtonOnProductViewPage() {
+        addCartAlert = productView.clickAddToCart();
+    }
+
+    @Then("^Check 'cantidad' label is \"([^\"]*)\" on 'AddCartAlert' page$")
+    public void checkCantidadLabelIsOnAddCartAlertPage(String cantidad) {
+        Assert.assertEquals(cantidad, addCartAlert.getCantidad());
+    }
+
+    @And("^click 'Ver Carrito' button on 'AddCartAlert' page$")
+    public void clickVerCarritoButtonOnAddCartAlertPage() {
+        carrito = addCartAlert.clickVerCarrito();
+    }
+
+    @Then("^Verify Product Name is \"([^\"]*)\" on 'Cart' page$")
+    public void verifyProductNameIs(String name) {
+        Assert.assertEquals(name, carrito.getName());
+    }
+
+    @And("^Verify Product 'quantity' is \"([^\"]*)\" on 'Cart' page$")
+    public void verifyProductQuantityIsOnCartPage(String quantity) {
+        Assert.assertEquals(quantity, carrito.getQuantity());
+    }
+
+    @And("^Verify 'Total Amount' label is the same price on 'Cart' page and on 'store' page$")
+    public void verifyTotalAmountLabelIsTheSamePriceOnCartPageAndOnStorePage() {
+        Assert.assertEquals(storePrice.concat(".00"), carrito.getTotalAmount());
     }
 }

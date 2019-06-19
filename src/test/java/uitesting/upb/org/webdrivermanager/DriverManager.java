@@ -18,7 +18,7 @@ public class DriverManager {
 
     private DriverManager() {
         webDriver = DriverFactory.getWebDriver(BrowserType.valueOf(PropertyAccesor.getInstance().getBrowser()));
-        wait = new WebDriverWait(webDriver, 10);
+        wait = new WebDriverWait(webDriver, 30);
     }
 
     public WebDriver getWebDriver(){
