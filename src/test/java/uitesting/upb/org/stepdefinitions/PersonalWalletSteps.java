@@ -39,7 +39,6 @@ public class PersonalWalletSteps {
     @Given("^Click \"(.*)\" button on 'home menu' page$")
     public void clickAccountButton(String accountId) {
         mainMenu = accountHomeMenu.clickButtonById(accountId);
-        header = LoadPage.loadHeader();
     }
 
     @When("^Click 'Reports' button on 'main menu' page$")
@@ -160,7 +159,6 @@ public class PersonalWalletSteps {
 
     @Given("^clicked \"([^\"]*)\" button on 'AccountHomeMenu'$")
     public void clickedTheButtonOnAccountHomeMenu(String accountId) {
-        header = LoadPage.loadHeader();
         mainMenu = accountHomeMenu.clickButtonById(accountId);
     }
 
