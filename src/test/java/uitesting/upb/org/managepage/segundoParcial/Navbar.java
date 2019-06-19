@@ -10,14 +10,16 @@ public class Navbar extends BasePage {
     @FindBy(xpath = "//a[text()='HOMBRE']")
     private WebElement hombreLink;
 
-    @FindBy(xpath = "//div[@class='main-line']//div[@class='col-5'][2]//a[text()='Fútbol']")
-    private WebElement futbol;
+    @FindBy(xpath = "//a[@href=\"/calzado_de_futbol-hombre\"]")
+    private WebElement futbolLink;
 
-    public void clickFutbol() {
-        Events.click(hombreLink);
+    public CalzadosFutbolPage clickFutbol() {
+        Events.click(futbolLink);
+        return new CalzadosFutbolPage();
     }
 
-    public void hoverOverHombreLink() {
+    public Navbar hoverOverHombreLink() {
         Events.hoverElement(hombreLink);
+        return this;
     }
 }

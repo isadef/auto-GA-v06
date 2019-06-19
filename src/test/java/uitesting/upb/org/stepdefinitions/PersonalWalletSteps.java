@@ -1,6 +1,7 @@
 package uitesting.upb.org.stepdefinitions;
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -14,7 +15,7 @@ import uitesting.upb.org.managepage.personalwallet.ReportsPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
 import uitesting.upb.org.managepage.personalwallet.TransferPage;
-import uitesting.upb.org.managepage.segundoParcial.Navbar;
+import uitesting.upb.org.managepage.segundoParcial.*;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public class PersonalWalletSteps {
     private IncomePage incomePage;
     private AccountSettingsPage accountSettingsPage;
     private Navbar navbar;
+    private String precio;
+    private CalzadosFutbolPage calzadosFutbolPage;
+    private NemezizCalzadoPage nemezizCalzadoPage;
+    private ModalCarrito modalCarrito;
+    private CarritoPage carritoPage;
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
@@ -361,19 +367,74 @@ public class PersonalWalletSteps {
         Assert.assertEquals(reportsPageTable, tableAsList);
     }
 
-    @Given("^Hover 'HOMBRE' link on 'navbar' page$")
-    public void hoverHOMBRELinkOnNavbarPage() {
-        navbar.hoverOverHombreLink();
-
-    }
-
     @Given("^The 'Navbar' is loaded$")
     public void theNavbarIsLoaded() {
         navbar = LoadPage.loadNavBar();
     }
 
-    @Given("^Click 'Fubtol' link$")
-    public void clickFubtolLink() {
-        navbar.clickFutbol();
+    @Given("^Click 'Futbol' link on 'navbar' page$")
+    public void clickFutbolLink() {
+        calzadosFutbolPage = navbar.clickFutbol();
+    }
+
+    @Given("^Hover 'HOMBRE' link on 'navbar' page$")
+    public void hoverHOMBRELinkOnNavbarPage() {
+        navbar.hoverOverHombreLink();
+    }
+
+    @Given("^Get precio primer calzado on 'calzados futbol' page$")
+    public void getPrecioPrimerCalzadoOnCalzadosFutbolPage() {
+        precio = calzadosFutbolPage.getPrecio();
+        System.out.println(precio);
+    }
+
+    @And("^Click 'primer calzado' div on 'calzados futbol' page$")
+    public void clickPrimerCalzadoDivOnCalzadosFutbolPage() {
+        nemezizCalzadoPage = calzadosFutbolPage.clickPrimerCalzado();
+    }
+
+    @Given("^Click 'elige tu talla' button on 'nemeziz calzado' page$")
+    public void clickEligeTuTallaButtonOnNemezizCalzadoPage() {
+        nemezizCalzadoPage.clickEligeTuTalla();
+    }
+
+    @And("^Click '8.5' button on 'nemeziz calzado' page$")
+    public void clickButtonOnNemezizCalzadoPage() {
+        nemezizCalzadoPage.clickTalla();
+    }
+
+    @And("^Click 'anadir al carrito' button on 'nemeziz calzado' page$")
+    public void clickAnadirAlCarritoButtonOnNemezizCalzadoPage() {
+        modalCarrito = nemezizCalzadoPage.clickAnadirCarrito();
+    }
+
+    @Then("^Cantidad carrito es \"([^\"]*)\" on 'modal' page$")
+    public void cantidadCarritoEs(String numero) {
+        Assert.assertEquals(numero, modalCarrito.getCantidadCarrito());
+    }
+
+    @And("^Click 'ver carrito' button on 'modal page'$")
+    public void clickVerCarritoButtonOnModalPage() {
+        carritoPage = modalCarrito.clickVerCarritoButton();
+    }
+
+    @Then("^Title is \"([^\"]*)\"$")
+    public void titleIs(String title) {
+        Assert.assertEquals(title, carritoPage.getTitle());
+    }
+
+    @Then("^Quantity is \"([^\"]*)\"$")
+    public void quantityIs(String quantity){
+        Assert.assertEquals(quantity, carritoPage.getQuantity());
+    }
+
+    @Then("^Precio is actual price$")
+    public void precioIs() {
+        Assert.assertEquals(precio, carritoPage.getFirstPrice());
+    }
+
+    @Then("^Precio total is actual price$")
+    public void precioTotalIs() {
+        Assert.assertEquals(precio, carritoPage.getTotalPrice());
     }
 }
