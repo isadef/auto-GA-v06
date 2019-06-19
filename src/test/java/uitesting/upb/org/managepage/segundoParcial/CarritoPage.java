@@ -14,10 +14,10 @@ public class CarritoPage extends BasePage {
     @FindBy(xpath = "//a[@class='ffSelectButton']")
     private WebElement quantity;
 
-    @FindBy(xpath = "//div[@class='cart-widget-value'][1]")
+    @FindBy(xpath = "(//div[@class='cart-widget-value'])[1]")
     private WebElement firstPrice;
 
-    @FindBy(xpath = "//div[@class='cart-widget-value'][2]")
+    @FindBy(xpath = "(//div[@class='cart-widget-value'])[2]")
     private WebElement totalPrice;
 
     public String getTitle() {
@@ -35,10 +35,12 @@ public class CarritoPage extends BasePage {
     }
 
     public String getFirstPrice() {
+        System.out.println(firstPrice.getText());
         return firstPrice.getText();
     }
 
     public String getTotalPrice() {
+        System.out.println(totalPrice.getText());
         return totalPrice.getText();
     }
 }

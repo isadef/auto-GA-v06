@@ -14,7 +14,7 @@ public class CalzadosFutbolPage extends BasePage {
 
     public String getPrecio() {
         if (Events.isWebElementVisible(precioSpan)) {
-           precioSpan.getText();
+           return precioSpan.getText();
         }
         return "";
     }

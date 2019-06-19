@@ -6,6 +6,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.bytebuddy.description.field.FieldDescription;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.personalwallet.AccountHomeMenu;
@@ -113,7 +114,7 @@ public class PersonalWalletSteps {
     }
 
     @Then("^\"([^\"]*)\" error shows up on 'reports' page$")
-    public void errorShowsUpOnReportsPage(String errorMessage){
+    public void errorShowsUpOnReportsPage(String errorMessage) {
         String errorMessageFromReportsPage = reportsPage.getErrorMessage();
         Assert.assertEquals(errorMessage, errorMessageFromReportsPage);
     }
@@ -206,7 +207,7 @@ public class PersonalWalletSteps {
 
     @And("^select \"([^\"]*)\" values on 'category' selector on 'Expenses Page'$")
     public void selectValuesOnCategorySelectorOnExpensesPage(String category) {
-       expensesPage = (ExpensesPage) expensesPage.selectCategory(category);
+        expensesPage = (ExpensesPage) expensesPage.selectCategory(category);
     }
 
     @And("^fill 'AmountBS' field with \"([^\"]*)\" on 'Expenses Page'$")
@@ -295,7 +296,7 @@ public class PersonalWalletSteps {
     }
 
     @And("^fill 'category name' field with \"([^\"]*)\" on 'Income page'$")
-    public void fillCategoryNameFieldWithOnIncomePage(String name)   {
+    public void fillCategoryNameFieldWithOnIncomePage(String name) {
         incomePage = (IncomePage) incomePage.fillCategoryRegisterField(name);
     }
 
@@ -310,12 +311,12 @@ public class PersonalWalletSteps {
     }
 
     @And("^Search \"([^\"]*)\" on 'category' selector on 'Income page'$")
-    public void searchOnCategorySelectorOnIncomePage(String category)  {
+    public void searchOnCategorySelectorOnIncomePage(String category) {
         Assert.assertTrue(incomePage.searchCategoryOnSelector(category));
     }
 
     @And("^fill 'income name' field with \"([^\"]*)\" on 'Income Page'$")
-    public void fillIncomeNameFieldWithOnIncomePage(String name)  {
+    public void fillIncomeNameFieldWithOnIncomePage(String name) {
         incomePage = (IncomePage) incomePage.fillTransactionNameField(name);
     }
 
@@ -325,7 +326,7 @@ public class PersonalWalletSteps {
     }
 
     @And("^fill 'AmountBS' field with \"([^\"]*)\" on 'Income Page'$")
-    public void fillAmountBSFieldWithOnIncomePage(String amount){
+    public void fillAmountBSFieldWithOnIncomePage(String amount) {
         incomePage = (IncomePage) incomePage.fillAmountField(amount);
 
     }
@@ -362,12 +363,12 @@ public class PersonalWalletSteps {
 
     @Then("^Reports table shows$")
     public void asssertReportsTable(DataTable table) {
-        List< List<String> > reportsPageTable = reportsPage.getTableAsListOfLists();
-        List< List<String> > tableAsList = table.raw();
+        List<List<String>> reportsPageTable = reportsPage.getTableAsListOfLists();
+        List<List<String>> tableAsList = table.raw();
         Assert.assertEquals(reportsPageTable, tableAsList);
     }
 
-    @Given("^The 'Navbar' is loaded$")
+    @Given("^The 'Adidas' page is loaded$")
     public void theNavbarIsLoaded() {
         navbar = LoadPage.loadNavBar();
     }
@@ -385,7 +386,6 @@ public class PersonalWalletSteps {
     @Given("^Get precio primer calzado on 'calzados futbol' page$")
     public void getPrecioPrimerCalzadoOnCalzadosFutbolPage() {
         precio = calzadosFutbolPage.getPrecio();
-        System.out.println(precio);
     }
 
     @And("^Click 'primer calzado' div on 'calzados futbol' page$")
@@ -424,17 +424,30 @@ public class PersonalWalletSteps {
     }
 
     @Then("^Quantity is \"([^\"]*)\"$")
-    public void quantityIs(String quantity){
+    public void quantityIs(String quantity) {
         Assert.assertEquals(quantity, carritoPage.getQuantity());
     }
 
     @Then("^Precio is actual price$")
     public void precioIs() {
-        Assert.assertEquals(precio, carritoPage.getFirstPrice());
+        Assert.assertEquals(getInt(precio), getInt(carritoPage.getFirstPrice()));
     }
 
     @Then("^Precio total is actual price$")
     public void precioTotalIs() {
-        Assert.assertEquals(precio, carritoPage.getTotalPrice());
+        Assert.assertEquals(getInt(precio), getInt(carritoPage.getTotalPrice()));
+    }
+
+    private int getInt(String numberString) {
+        String numberStr = "";
+        for (int q = 0; q < numberString.length(); q++) {
+            if (numberString.charAt(q) == '.') {
+                break;
+            }
+            if (numberString.charAt(q) >= 48 && numberString.charAt(q) <= 57) {
+                numberStr += numberString.charAt(q);
+            }
+        }
+        return Integer.parseInt(numberStr);
     }
 }
