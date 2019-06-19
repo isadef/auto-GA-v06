@@ -6,6 +6,7 @@ import uitesting.upb.org.managepage.personalwallet.Header;
 import uitesting.upb.org.managepage.personalwallet.MainMenu;
 import uitesting.upb.org.managepage.personalwallet.ReportsPage;
 import uitesting.upb.org.webdrivermanager.DriverManager;
+import uitesting.upb.org.managepage.adidas.Navbar;
 
 public class LoadPage {
     public static AccountHomeMenu loadHomeMenu() {
@@ -22,5 +23,11 @@ public class LoadPage {
         String newAccountName = "Test";
         MainMenu mainMenu = loadHomeMenu().writeAccountName(newAccountName).clickAddButton().clickButtonById(newAccountName);
         ReportsPage reports = mainMenu.clickReportsButton();
+    }
+
+    public static Navbar loadAdidasHeader () {
+        DriverManager.getInstance().getWebDriver().manage().window().maximize();
+        DriverManager.getInstance().getWebDriver().navigate().to(PropertyAccesor.getInstance().getBaseURL());
+        return new Navbar();
     }
 }
