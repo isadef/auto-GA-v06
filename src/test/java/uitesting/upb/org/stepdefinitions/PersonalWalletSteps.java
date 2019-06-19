@@ -14,6 +14,7 @@ import uitesting.upb.org.managepage.personalwallet.ReportsPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
 import uitesting.upb.org.managepage.personalwallet.TransferPage;
+import uitesting.upb.org.managepage.segundoParcial.Navbar;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class PersonalWalletSteps {
     private TransferPage transferPage;
     private IncomePage incomePage;
     private AccountSettingsPage accountSettingsPage;
+    private Navbar navbar;
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
@@ -357,5 +359,16 @@ public class PersonalWalletSteps {
         List< List<String> > reportsPageTable = reportsPage.getTableAsListOfLists();
         List< List<String> > tableAsList = table.raw();
         Assert.assertEquals(reportsPageTable, tableAsList);
+    }
+
+    @Given("^Hover 'HOMBRE' link on 'navbar' page$")
+    public void hoverHOMBRELinkOnNavbarPage() {
+        navbar.hoverOverHombreLink();
+
+    }
+
+    @Given("^The 'Navbar' is loaded$")
+    public void theNavbarIsLoaded() {
+        navbar = LoadPage.loadNavBar();
     }
 }
