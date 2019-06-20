@@ -1,10 +1,12 @@
 package uitesting.upb.org.manageevents;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import uitesting.upb.org.webdrivermanager.DriverManager;
 
 import java.util.List;
@@ -70,5 +72,10 @@ public class Events {
     public static void hoverElement(WebElement element) {
         Actions action = new Actions(DriverManager.getInstance().getWebDriver());
         action.moveToElement(element).perform();
+    }
+
+    public static void waitForElementToBeVisible(By.ByXPath xPath) {
+        WebDriverWait wait = new WebDriverWait((DriverManager.getInstance().getWebDriver()), 1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xPath));
     }
 }

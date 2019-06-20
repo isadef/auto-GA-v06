@@ -1,7 +1,7 @@
 Feature: Shoes price
 
   Background:
-    Given The 'Navbar' is loaded
+    Given The 'Adidas' page is loaded
 
   Scenario: Test 'XX' shoes price matches initial price
     Given Hover 'HOMBRE' link on 'navbar' page
