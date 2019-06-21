@@ -53,4 +53,12 @@ public class PropertyAccesor {
         System.out.println(PropertyAccesor.getInstance().getPassword());
     }
 
+    public int getImplicitTimeWait() {
+        return Integer.parseInt(prop.getProperty("implicitTimeWait"));
+    }
+
+    public int getExplicitTimeWait() {
+        return Integer.parseInt(prop.getProperty("explicitTimeWait"));
+    }
+
 }
