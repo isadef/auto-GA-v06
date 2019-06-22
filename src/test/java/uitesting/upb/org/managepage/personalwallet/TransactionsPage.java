@@ -42,9 +42,53 @@ public class TransactionsPage extends BasePage {
 
     @FindBy(id = "transactionSuccess")
     protected WebElement transactionSuccessAlert;
+    @FindBy(id = "settings")
+    private WebElement accountSettingsButton;
+
+    @FindBy(id = "changeSuccess")
+    protected WebElement changeSuccesAlert;
+
+    @FindBy(id = "changeFail")
+    protected WebElement changeFailAlert;
+
+    @FindBy(id = "old-name")
+    protected WebElement oldNameField;
+
+    @FindBy(id = "new-name")
+    protected WebElement newNameField;
+
+    @FindBy(id = "new-date")
+    protected WebElement newDateField;
+
+    @FindBy(id = "new-amount")
+    protected WebElement newAmountField;
+
+    @FindBy(id = "new-category")
+    protected WebElement newCategoryField;
+
+    @FindBy(id = "buttonChange")
+    protected WebElement registerChangesButton;
 
     @FindBy(xpath = "//a[@class='navbar-brand']")
     private WebElement personalWalletLink;
+
+    @FindBy (id = "old-name")
+    private WebElement transactionNameSelector;
+
+    public TransactionsPage selectNewCategory(String option) {
+        Events.selectOptionInSelectElementByVisibleText(new Select(newCategoryField), option);
+        return this;
+    }
+
+    public TransactionsPage selectTransactionName (String option) {
+        Events.selectOptionInSelectElementByVisibleText(new Select(transactionNameSelector), option);
+        return this;
+    }
+
+    public TransactionsPage clearCategoryNameField () {
+        Events.clearElement(categoryRegisterField);
+        return this;
+    }
 
     public boolean isTransactionFailAlertVisible() {
         return Events.isWebElementVisible(transactionFailAlert);
@@ -56,6 +100,10 @@ public class TransactionsPage extends BasePage {
 
     public int getCategorySelectorNumberOptions () {
      return Events.getSelectorNumberOptions(new Select(categorySelector));
+    }
+
+    public int getTransactionNameSelectorNumberOptions () {
+        return Events.getSelectorNumberOptions(new Select(transactionNameSelector));
     }
 
     public boolean isTransactionSuccessAlertVisible() {
@@ -102,6 +150,10 @@ public class TransactionsPage extends BasePage {
         return Events.isElementOnSelector(categorySelector, category);
     }
 
+    public boolean searchOptionOnTransactionNameSelector(String option) {
+        return Events.isElementOnSelector(transactionNameSelector, option);
+    }
+
     public TransactionsPage selectCategory(String category) {
         Events.fillField(categorySelector, category);
         return this;
@@ -112,8 +164,51 @@ public class TransactionsPage extends BasePage {
         return new AccountHomeMenu();
     }
 
+    public AccountSettingsPage clickAccountSettingsButton() {
+        Events.click(accountSettingsButton);
+        return new AccountSettingsPage();
+    }
+
     public MainMenu clickPersonalWalletLink() {
         Events.click(personalWalletLink);
         return new MainMenu();
     }
+    public boolean isChangeSuccessAlertVisible() {
+        return Events.isWebElementVisible(changeSuccesAlert);
+    }
+
+    public boolean isChangeFailAlertVisible() {
+        return Events.isWebElementVisible(changeFailAlert);
+    }
+
+    public TransactionsPage fillNewCategoryField(String name) {
+        Events.fillField(newCategoryField, name);
+        return this;
+    }
+
+    public TransactionsPage fillNewNameField(String name) {
+        Events.fillField(newNameField, name);
+        return this;
+    }
+
+    public TransactionsPage fillNewAmountField(String name) {
+        Events.fillField(newAmountField, name);
+        return this;
+    }
+
+    public TransactionsPage fillNewDateField(String name) {
+        Events.fillField(newDateField, name);
+        return this;
+    }
+
+    public TransactionsPage fillOldTransactionNameField(String name) {
+        Events.fillField(oldNameField, name);
+        return this;
+    }
+
+    public TransactionsPage clickRegisterChangesButton() {
+        Events.click(registerChangesButton);
+        return this;
+    }
+
 }
