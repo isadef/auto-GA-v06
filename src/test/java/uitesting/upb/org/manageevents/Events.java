@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import uitesting.upb.org.webdrivermanager.DriverManager;
 
 import java.util.List;
@@ -15,14 +16,15 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class Events {
-    public static void click(WebElement webElement){
-       // DriverManager.getInstance()
+    public static void click(WebElement webElement) {
+        // DriverManager.getInstance()
         //DriverManager.getInstance().getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-       // webElement.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div[1]/div[2]/ul/li[2]/a")).click();
+        // webElement.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div[1]/div[2]/ul/li[2]/a")).click();
         DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
     }
-    public static void click(By by){
+
+    public static void click(By by) {
         DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(by)).click();
     }
 
@@ -41,10 +43,12 @@ public class Events {
     public static WebElement getWebElementById(String id) {
         return DriverManager.getInstance().getWebDriver().findElement(By.id(id));
     }
+
     public static int getNumberOfElements(String xpathSelector) {
         List<WebElement> webElements = DriverManager.getInstance().getWebDriver().findElements(By.xpath(xpathSelector));
         return webElements.size();
     }
+
     public static boolean isWebElementVisible(WebElement webElement) {
         return DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement)).isDisplayed();
     }
@@ -61,31 +65,47 @@ public class Events {
         List<WebElement> webElements = DriverManager.getInstance().getWebDriver().findElements(by);
         return webElements.size();
     }
+
     public static boolean isElementOnSelector(WebElement selector, String element) {
         WebElement option = selector.findElement(By.xpath("//option[contains(.," + element + ")]"));
-        if (option != null)
-        {return true;}
-        else {return false;}
+        if (option != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public static int getSelectorNumberOptions (Select select) {
+    public static int getSelectorNumberOptions(Select select) {
         return select.getOptions().size();
     }
 
     public static String getText(WebElement webElement) {
         return DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement)).getText();
     }
+
     public static void hoverWebElement(WebElement webElement) {
-        Actions action = new Actions( DriverManager.getInstance().getWebDriver());
+
+        Actions action = new Actions(DriverManager.getInstance().getWebDriver());
         WebElement element = DriverManager.getInstance().getWebDriver().findElement(By.xpath("//*[contains(text(),'HOMBRE')]"));
+
         action.moveToElement(webElement).build().perform();
     }
-    public  static void showTextElement(WebElement webElement){
+
+    public static void showTextElement(WebElement webElement) {
         DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement));
-        System.out.println("\n text: "+ Events.getText(webElement));
+        System.out.println("\n text: " + Events.getText(webElement));
     }
 
+    public static void waitForElementToBeVisible(String webElementXpath) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getWebDriver(), 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElementXpath)));
 
 
+    }
 
+    public static void waitForElementToBeVisible(By by,int timeInSeconds) {
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getWebDriver(), timeInSeconds);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        DriverManager.getInstance().restoreWaiters();
+    }
 }
