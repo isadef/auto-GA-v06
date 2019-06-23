@@ -215,10 +215,3 @@ Feature: Trasnfer Between Accounts
                 | AccountDest |  Amount  |
                 | Destination |    50    |
               Then search 'Success Message' alert on 'Transfer' page
-
-
-
-
-
-
-
