@@ -481,4 +481,45 @@ public class PersonalWalletSteps {
     public void selectNameOnExpensesPage(String arg0) throws Throwable {
         expensesPage = (ExpensesPage) expensesPage.selectTransactionName(arg0);
     }
+
+    @Then("^click 'Exit' button on 'Header' page$")
+    public void clickExitButtonOnHeaderPage() {
+        accountHomeMenu = header.clickExitButton();
+
+    }
+
+    @Then("^table on 'Report' page should show \"([^\"]*)\" transaction type on category column, second row$")
+    public void tableOnReportPageShouldShowTransactionTypeOnCategoryColumnSecondRow(String typeTransacion) throws Throwable {
+        Assert.assertEquals(reportsPage.getCategoryTypeText(), typeTransacion);
+    }
+
+
+    @And("^select enum value \"([^\"]*)\" on 'Destination Account' selector on 'Transfer' Page$")
+    public void selectEnumValueOnDestinationAccountSelectorOnTransferPage(AccountDestinationEnum EnumValue) throws Throwable {
+        accountEnumCase(EnumValue);
+    }
+
+    public enum  AccountDestinationEnum {
+        Destination,
+        Savings,
+        Ahorros
+    }
+
+    protected void accountEnumCase(AccountDestinationEnum accountDestinationEnum){
+
+        switch (accountDestinationEnum) {
+            case Ahorros:
+                transferPage = transferPage.selectAccountDestination("Ahorros");
+                System.out.println("Enum Value: Ahorros \n");
+                break;
+            case Savings:
+                transferPage = transferPage.selectAccountDestination("Savings");
+                System.out.println("Enum Value: Savings \n");
+                break;
+            case Destination:
+                transferPage = transferPage.selectAccountDestination("Destination");
+                System.out.println("Enum Value: Destination \n");
+                break;
+        }
+    }
 }

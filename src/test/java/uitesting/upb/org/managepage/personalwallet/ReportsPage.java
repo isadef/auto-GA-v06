@@ -33,6 +33,9 @@ public class ReportsPage extends BasePage {
     @FindBy(xpath = "//table")
     private WebElement reportsTable;
 
+    @FindBy(xpath = "//SPAN[@data-v-4edbbc7e=''][text()='Transfer']" )
+    private WebElement categoryColumnTransferData;
+
     public String getTitle() {
         return title.getText();
     }
@@ -96,5 +99,9 @@ public class ReportsPage extends BasePage {
     public String getElementColor(String element) {
         WebElement webElement = Events.getElementByBy(new By.ByXPath("//*[text()[contains(.,'" + element + "')]]"));
         return webElement.getCssValue("color");
+    }
+
+    public String getCategoryTypeText(){
+        return Events.getText(categoryColumnTransferData);
     }
 }
