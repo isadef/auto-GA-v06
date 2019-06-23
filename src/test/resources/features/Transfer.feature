@@ -151,7 +151,7 @@ Feature: Trasnfer Between Accounts
 
 
           #Enum
-          Scenario: Success Message is displayed when filled 'Amount BS' and selected any 'Destination' account
+          Scenario: Success Message is displayed when filled with Enum values
             Given click 'Exit' button on 'Header' page
             Given filled 'Account name' field on 'AccountHomeMenu' with "Savings"
               And clicked 'Add' button on 'AccountHomeMenu'
@@ -174,7 +174,7 @@ Feature: Trasnfer Between Accounts
 
 
           #List
-          Scenario Outline: Success Message is displayed when filled 'Amount BS' and selected any 'Destination' account
+          Scenario Outline: Success Message is displayed when filled with lists
             Given click 'Exit' button on 'Header' page
             Given filled 'Account name' field on 'AccountHomeMenu' with "Savings"
             And clicked 'Add' button on 'AccountHomeMenu'
@@ -201,13 +201,7 @@ Feature: Trasnfer Between Accounts
               | Ahorros     |    10    | Natural |
 
             #Map
-            Scenario: Success Message is displayed when filled 'Amount BS' and selected any 'Destination' account
-              Given click 'Exit' button on 'Header' page
-              Given filled 'Account name' field on 'AccountHomeMenu' with "Savings"
-              And clicked 'Add' button on 'AccountHomeMenu'
-              Given filled 'Account name' field on 'AccountHomeMenu' with "Ahorros"
-              And clicked 'Add' button on 'AccountHomeMenu'
-              Given  clicked "Test" button on 'AccountHomeMenu'
+            Scenario: Success Message is displayed when filled data with Maps account
               Given click 'Income' button on 'MainMenu' page
               And fill 'income name' field with "Prueba income 1" on 'Income Page'
               And select "Others" values on 'category' selector on 'Income Page'
@@ -217,9 +211,9 @@ Feature: Trasnfer Between Accounts
               Then click 'Exit' button on 'Income' page
               Given clicked "Test" button on 'AccountHomeMenu'
               Given clicked 'Transfer' Button on 'MainMenu' page
-              And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
-              And filled 'amount in BS' text field with "50" on 'Transfer' page
-              And click 'Transfer' Button on 'Transfer' page
+              And user selects account to transfer with given amount to register
+                | AccountDest |  Amount  |
+                | Destination |    50    |
               Then search 'Success Message' alert on 'Transfer' page
 
 

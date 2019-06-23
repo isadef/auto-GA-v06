@@ -151,7 +151,7 @@ Feature: Trasnfer Between Accounts
 
 
           #Enum
-          Scenario: Success Message is displayed when filled 'Amount BS' and selected any 'Destination' account
+          Scenario: Success Message is displayed when filled with Enum values
             Given click 'Exit' button on 'Header' page
             Given filled 'Account name' field on 'AccountHomeMenu' with "Savings"
               And clicked 'Add' button on 'AccountHomeMenu'
@@ -174,7 +174,7 @@ Feature: Trasnfer Between Accounts
 
 
           #List
-          Scenario Outline: Success Message is displayed when filled 'Amount BS' and selected any 'Destination' account
+          Scenario Outline: Success Message is displayed when filled with lists
             Given click 'Exit' button on 'Header' page
             Given filled 'Account name' field on 'AccountHomeMenu' with "Savings"
             And clicked 'Add' button on 'AccountHomeMenu'
@@ -199,6 +199,22 @@ Feature: Trasnfer Between Accounts
               | Destination |    50    | Natural |
               | Savings     |   30.13  | Rational|
               | Ahorros     |    10    | Natural |
+
+            #Map
+            Scenario: Success Message is displayed when filled data with Maps account
+              Given click 'Income' button on 'MainMenu' page
+              And fill 'income name' field with "Prueba income 1" on 'Income Page'
+              And select "Others" values on 'category' selector on 'Income Page'
+              And fill 'AmountBS' field with "10000" on 'Income Page'
+              And fill 'DateField' field with "12/06/2019" on 'Income Page'
+              And click 'Register Transaction' button on 'Income Page'
+              Then click 'Exit' button on 'Income' page
+              Given clicked "Test" button on 'AccountHomeMenu'
+              Given clicked 'Transfer' Button on 'MainMenu' page
+              And user selects account to transfer with given amount to register
+                | AccountDest |  Amount  |
+                | Destination |    50    |
+              Then search 'Success Message' alert on 'Transfer' page
 
 
 

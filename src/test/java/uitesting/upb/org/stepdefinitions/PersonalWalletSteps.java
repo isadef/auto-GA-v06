@@ -13,6 +13,7 @@ import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
 
 import java.util.List;
+import java.util.Map;
 
 public class PersonalWalletSteps {
 
@@ -520,6 +521,17 @@ public class PersonalWalletSteps {
                 transferPage = transferPage.selectAccountDestination("Destination");
                 System.out.println("Enum Value: Destination \n");
                 break;
+        }
+    }
+
+
+    @And("^user selects account to transfer with given amount to register$")
+    public void userSelectsAccountToTransferWithGivenAmountToRegister(DataTable userData) {
+
+        for (Map<String, String>data : userData.asMaps(String.class, String.class)){
+            transferPage = transferPage.selectAccountDestination(data.get("AccountDest"));
+            transferPage = transferPage.fillAmountTransferTextField(data.get("Amount"));
+            transferPage = transferPage.clickTransferButton();
         }
     }
 }
