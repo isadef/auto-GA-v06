@@ -12,6 +12,9 @@ public class AccountHomeMenu extends BasePage {
     @FindBy(css = "#addAccountButton")
     private WebElement addAccountButton;
 
+    @FindBy(id = "general")
+    private WebElement generalAccountButton;
+
     public AccountHomeMenu writeAccountName(String name) {
         Events.fillField(accountNameInput, name);
         return this;
@@ -36,5 +39,10 @@ public class AccountHomeMenu extends BasePage {
     public boolean isAccountButtonVisible(String id) {
         WebElement button = Events.getWebElementById(id);
         return Events.isWebElementVisible(button);
+    }
+
+    public ReportsPage clickGeneralAccount() {
+        Events.click(generalAccountButton);
+        return new ReportsPage();
     }
 }

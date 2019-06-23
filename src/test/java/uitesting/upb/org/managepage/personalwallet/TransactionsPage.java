@@ -37,7 +37,7 @@ public class TransactionsPage extends BasePage {
     @FindBy(id = "categoryFail")
     protected WebElement categoryFailAlert;
 
-    @FindBy(id = "exit")
+    @FindBy(xpath = "//nav//form//a")
     private WebElement exitButton;
 
     @FindBy(id = "transactionSuccess")
@@ -169,10 +169,6 @@ public class TransactionsPage extends BasePage {
         return new AccountSettingsPage();
     }
 
-    public MainMenu clickPersonalWalletLink() {
-        Events.click(personalWalletLink);
-        return new MainMenu();
-    }
     public boolean isChangeSuccessAlertVisible() {
         return Events.isWebElementVisible(changeSuccesAlert);
     }
