@@ -2,18 +2,30 @@ package uitesting.upb.org.manageParameters;
 
 public enum EnumValues {
    
-    CALZADODEFUTBOLNEMEZIZ193TERRENOFIRME("Cantidad: 1");
+    CalzadoNemesis("calzado Prueba 1");
 
-    private String quantity;
+    private String totalName;
 
 
-    EnumValues(String quantity) {
-        this.quantity = quantity;
-
+    EnumValues(String totalName) {
+        this.totalName = totalName;
     }
 
     public String getQuantity() {
-        return quantity;
+        return totalName;
     }
+
+    public static String testMyEnum(String calzado) {
+
+        switch (calzado) {
+            case "calzado 1":
+                return CalzadoNemesis.getQuantity();
+
+            default:
+               return "";
+        }
+
+    }
+
 }
 

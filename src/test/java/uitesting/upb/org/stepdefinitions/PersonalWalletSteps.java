@@ -9,6 +9,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
+import uitesting.upb.org.manageParameters.MapQuantity;
 import uitesting.upb.org.managepage.adidas.AdidasMainPage;
 import uitesting.upb.org.managepage.adidas.CalzadoPage;
 import uitesting.upb.org.managepage.adidas.CarritoPage;
@@ -488,7 +489,7 @@ public class PersonalWalletSteps {
     @And("^search 'cantidad' text with \"([^\"]*)\" on 'calzado page'$")
     public void searchCantidadTextWithOnCalzadoPage(String text) {
         System.out.println(text + " // "+ calzadoPage.getText());
-        Assert.assertEquals(calzadoPage.getText(),text);
+        Assert.assertEquals(calzadoPage.getText(), MapQuantity.getQuantity(text));
 
     }
 
@@ -516,5 +517,18 @@ public class PersonalWalletSteps {
     @And("^'totalfield' is displayed with \"([^\"]*)\" on 'carritopage'$")
     public void totalfieldIsDisplayedWithOnCarritopage(String total)  {
         Assert.assertEquals(carritoPage.getTotalFieldText(),total);
+    }
+
+    @And("^'totalproductofield' and 'totalfield' is displayes with \"([^\"]*)\"$")
+    public void totalproductofieldAndTotalfieldIsDisplayesWith(String list)   {
+       String [] listaPrecios = list.split(";");
+        Assert.assertEquals(carritoPage.getTotalProductFieldText(),listaPrecios[0]);
+        Assert.assertEquals(carritoPage.getTotalFieldText(),listaPrecios[1]);
+
+
+    }
+
+    @And("^search 'cantidad' text with <calzadoQuantity> on 'calzado page'$")
+    public void searchCantidadTextWithCalzadoQuantityOnCalzadoPage() {
     }
 }
