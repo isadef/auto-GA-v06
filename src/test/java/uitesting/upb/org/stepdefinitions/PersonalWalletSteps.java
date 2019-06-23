@@ -493,4 +493,44 @@ public class PersonalWalletSteps {
     public void tableOnReportPageShouldShowTransactionTypeOnCategoryColumnSecondRow(String typeTransacion) throws Throwable {
         Assert.assertEquals(reportsPage.getCategoryTypeText(), typeTransacion);
     }
+
+    @And("^select enum value \"([^\"]*)\" on 'Destination Account' selector on 'Transfer' Page$")
+    public void selectEnumValueOnDestinationAccountSelectorOnTransferPage(AccountDestinationEnum EnumValue) throws Throwable {
+        accountEnumCase(EnumValue);
+    }
+
+    public enum  AccountDestinationEnum {
+        Destination,
+        Savings,
+        Ahorros
+    }
+
+    protected void accountEnumCase(AccountDestinationEnum accountDestinationEnum){
+
+        switch (accountDestinationEnum) {
+            case Ahorros:
+                transferPage = transferPage.selectAccountDestination("Ahorros");
+                System.out.println("Enum Value: Ahorros \n");
+                break;
+            case Savings:
+                transferPage = transferPage.selectAccountDestination("Savings");
+                System.out.println("Enum Value: Savings \n");
+                break;
+            case Destination:
+                transferPage = transferPage.selectAccountDestination("Destination");
+                System.out.println("Enum Value: Destination \n");
+                break;
+        }
+    }
+
+
+    @And("^user selects account to transfer with given amount to register$")
+    public void userSelectsAccountToTransferWithGivenAmountToRegister(DataTable userData) {
+
+        for (Map<String, String>data : userData.asMaps(String.class, String.class)){
+            transferPage = transferPage.selectAccountDestination(data.get("AccountDest"));
+            transferPage = transferPage.fillAmountTransferTextField(data.get("Amount"));
+            transferPage = transferPage.clickTransferButton();
+        }
+    }
 }

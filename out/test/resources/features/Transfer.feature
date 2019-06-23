@@ -147,3 +147,69 @@ Feature: Trasnfer Between Accounts
           When Select 'By category' in 'Select report type' selector on 'reports' page
           And Click 'Show report' button on 'reports' page
           Then table on 'Report' page should show "Transfer" transaction type on category column, second row
+
+          #Enum
+          Scenario: Success Message is displayed when filled with Enum values
+            Given click 'Exit' button on 'Header' page
+            Given filled 'Account name' field on 'AccountHomeMenu' with "Savings"
+            And clicked 'Add' button on 'AccountHomeMenu'
+            Given filled 'Account name' field on 'AccountHomeMenu' with "Ahorros"
+            And clicked 'Add' button on 'AccountHomeMenu'
+            Given  clicked "Test" button on 'AccountHomeMenu'
+            Given click 'Income' button on 'MainMenu' page
+            And fill 'income name' field with "Prueba income 1" on 'Income Page'
+            And select "Others" values on 'category' selector on 'Income Page'
+            And fill 'AmountBS' field with "10000" on 'Income Page'
+            And fill 'DateField' field with "12/06/2019" on 'Income Page'
+            And click 'Register Transaction' button on 'Income Page'
+            Then click 'Exit' button on 'Income' page
+            Given clicked "Test" button on 'AccountHomeMenu'
+            Given clicked 'Transfer' Button on 'MainMenu' page
+            And select enum value "Savings" on 'Destination Account' selector on 'Transfer' Page
+            And filled 'amount in BS' text field with "50" on 'Transfer' page
+            And click 'Transfer' Button on 'Transfer' page
+            Then search 'Success Message' alert on 'Transfer' page
+
+
+          #List
+          Scenario Outline: Success Message is displayed when filled with lists
+            Given click 'Exit' button on 'Header' page
+            Given filled 'Account name' field on 'AccountHomeMenu' with "Savings"
+            And clicked 'Add' button on 'AccountHomeMenu'
+            Given filled 'Account name' field on 'AccountHomeMenu' with "Ahorros"
+            And clicked 'Add' button on 'AccountHomeMenu'
+            Given  clicked "Test" button on 'AccountHomeMenu'
+            Given click 'Income' button on 'MainMenu' page
+            And fill 'income name' field with "Prueba income 1" on 'Income Page'
+            And select "Others" values on 'category' selector on 'Income Page'
+            And fill 'AmountBS' field with "10000" on 'Income Page'
+            And fill 'DateField' field with "12/06/2019" on 'Income Page'
+            And click 'Register Transaction' button on 'Income Page'
+            Then click 'Exit' button on 'Income' page
+            Given clicked "Test" button on 'AccountHomeMenu'
+            Given clicked 'Transfer' Button on 'MainMenu' page
+            And select "<Account>" value on 'Destination Account' selector on 'Transfer' Page
+            And filled 'amount in BS' text field with "<AmountBS>" on 'Transfer' page
+            And click 'Transfer' Button on 'Transfer' page
+            Then search 'Success Message' alert on 'Transfer' page
+            Examples: Some examples for value inputs are
+              | Account     | AmountBS | TypeNum |
+              | Destination |    50    | Natural |
+              | Savings     |   30.13  | Rational|
+              | Ahorros     |    10    | Natural |
+
+            #Map
+            Scenario: Success Message is displayed when filled data with Maps account
+              Given click 'Income' button on 'MainMenu' page
+              And fill 'income name' field with "Prueba income 1" on 'Income Page'
+              And select "Others" values on 'category' selector on 'Income Page'
+              And fill 'AmountBS' field with "10000" on 'Income Page'
+              And fill 'DateField' field with "12/06/2019" on 'Income Page'
+              And click 'Register Transaction' button on 'Income Page'
+              Then click 'Exit' button on 'Income' page
+              Given clicked "Test" button on 'AccountHomeMenu'
+              Given clicked 'Transfer' Button on 'MainMenu' page
+              And user selects account to transfer with given amount to register
+                | AccountDest |  Amount  |
+                | Destination |    50    |
+              Then search 'Success Message' alert on 'Transfer' page
