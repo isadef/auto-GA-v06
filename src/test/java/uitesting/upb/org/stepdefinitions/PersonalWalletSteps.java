@@ -9,7 +9,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import uitesting.upb.org.enums.AccountSettingsButtons;
 import uitesting.upb.org.handlewebsite.LoadPage;
+import uitesting.upb.org.manageevents.Events;
 import uitesting.upb.org.managepage.personalwallet.AccountHomeMenu;
 import uitesting.upb.org.managepage.personalwallet.AccountSettingsPage;
 import uitesting.upb.org.managepage.personalwallet.MainMenu;
@@ -446,5 +448,25 @@ public class PersonalWalletSteps {
     @And("^fill 'Select transaction Name' with \"([^\"]*)\" field on 'Income page'$")
     public void fillSelectTransactionNameWithFieldOnIncomePage(String oldName) {
         incomePage = (IncomePage) incomePage.fillOldTransactionNameField(oldName);
+    }
+
+    @Then("^Button with 'changeNameButton' id is visible$")
+    public void buttonWithIdIsVsible() {
+        String buttonId = AccountSettingsButtons.CHANGENAME.getId();
+        WebElement button = Events.getWebElementById(buttonId);
+        Assert.assertTrue(Events.isWebElementVisible(button));
+    }
+
+    @When("^filled 'Account name' field with the next names")
+    public void filledAccountNameFieldWith(List<String> names) {
+
+    }
+
+    @Then("^Fill income values$")
+    public void fillIncomeValues(List<String> inputs) {
+        incomePage.fillAmountField(inputs.get(0));
+        incomePage.selectCategory(inputs.get(1));
+        incomePage.fillAmountField(inputs.get(2));
+        incomePage.fillDateField(inputs.get(3));
     }
 }

@@ -66,7 +66,7 @@ Feature: Verify Account Settings Functionality
     And fill the 'Name' field with "Test Income" on the 'Income' page
     And select "Others" value on the 'Category' selector on the 'Income' page
     And fill the 'Amount BS' field with "100" on the 'Income' page
-    And fill the 'Date of the Transaction' date field with "12/06/2019" on the 'Income' page
+    And fill 'Date of the Transaction' date field with "12/06/2019" on 'Income' page
     And click the 'Register Transaction' button on the 'Income' page
     And click the 'Exit' button on the 'Income' page
     And clicked "Settings" button on 'AccountHomeMenu'
@@ -79,3 +79,27 @@ Feature: Verify Account Settings Functionality
     And Click 'Account Settings' button on 'MainMenu' page
     And Click 'Delete account' button on 'AccountSettings' page
     Then Button "Settings2" exists
+
+  Scenario: enum Test
+    Given clicked "Settings" button on 'AccountHomeMenu'
+    When Click 'Account Settings' button on 'MainMenu' page
+    Then Button with 'changeNameButton' id is visible
+
+  Scenario: map test
+    When clicked "Settings" button on 'AccountHomeMenu'
+    And click 'Income' button on 'MainMenu' page
+    Then Fill income values
+      |name1|Others|200|11/01/2019|
+
+  Scenario Outline: list test
+    When filled 'Account name' field on 'AccountHomeMenu' with "<names>"
+    Then clicked 'Add' button on 'AccountHomeMenu'
+    Examples:
+    |names|
+    |Settings2|
+    |Settigns3|
+    |Settings4|
+
+
+
+
