@@ -1,18 +1,21 @@
 package uitesting.upb.org.stepdefinitions;
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
-import uitesting.upb.org.managepage.adidas.*;
 import uitesting.upb.org.handlewebsite.LoadPage;
+import uitesting.upb.org.managepage.adidas.*;
 import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PersonalWalletSteps {
 
@@ -30,6 +33,7 @@ public class PersonalWalletSteps {
     private IncomePage incomePage;
     private AccountSettingsPage accountSettingsPage;
     private String storePrice;
+    private Map<PRODUCTDATATYPE, String> map = new HashMap<>();
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
@@ -109,10 +113,11 @@ public class PersonalWalletSteps {
     }
 
     @Then("^\"([^\"]*)\" error shows up on 'reports' page$")
-    public void errorShowsUpOnReportsPage(String errorMessage){
+    public void errorShowsUpOnReportsPage(String errorMessage) {
         String errorMessageFromReportsPage = reportsPage.getErrorMessage();
         Assert.assertEquals(errorMessage, errorMessageFromReportsPage);
     }
+
     @Given("^The 'AccountHomeMenu' is loaded$")
     public void mainPageIsLoaded() {
         accountHomeMenu = LoadPage.loadHomeMenu();
@@ -201,7 +206,7 @@ public class PersonalWalletSteps {
 
     @And("^select \"([^\"]*)\" values on 'category' selector on 'Expenses Page'$")
     public void selectValuesOnCategorySelectorOnExpensesPage(String category) {
-       expensesPage = (ExpensesPage) expensesPage.selectCategory(category);
+        expensesPage = (ExpensesPage) expensesPage.selectCategory(category);
     }
 
     @And("^fill 'AmountBS' field with \"([^\"]*)\" on 'Expenses Page'$")
@@ -260,7 +265,7 @@ public class PersonalWalletSteps {
     }
 
     @And("^fill 'category name' field with \"([^\"]*)\" on 'Income page'$")
-    public void fillCategoryNameFieldWithOnIncomePage(String name)   {
+    public void fillCategoryNameFieldWithOnIncomePage(String name) {
         incomePage = (IncomePage) incomePage.fillCategoryRegisterField(name);
     }
 
@@ -275,12 +280,12 @@ public class PersonalWalletSteps {
     }
 
     @And("^Search \"([^\"]*)\" on 'category' selector on 'Income page'$")
-    public void searchOnCategorySelectorOnIncomePage(String category)  {
+    public void searchOnCategorySelectorOnIncomePage(String category) {
         Assert.assertTrue(incomePage.searchCategoryOnSelector(category));
     }
 
     @And("^fill 'income name' field with \"([^\"]*)\" on 'Income Page'$")
-    public void fillIncomeNameFieldWithOnIncomePage(String name)  {
+    public void fillIncomeNameFieldWithOnIncomePage(String name) {
         incomePage = (IncomePage) incomePage.fillTransactionNameField(name);
     }
 
@@ -290,7 +295,7 @@ public class PersonalWalletSteps {
     }
 
     @And("^fill 'AmountBS' field with \"([^\"]*)\" on 'Income Page'$")
-    public void fillAmountBSFieldWithOnIncomePage(String amount){
+    public void fillAmountBSFieldWithOnIncomePage(String amount) {
         incomePage = (IncomePage) incomePage.fillAmountField(amount);
 
     }
@@ -344,6 +349,7 @@ public class PersonalWalletSteps {
     public void checkThatBudgetAvailableInBSFieldIsVisible() {
         Assert.assertTrue(transferPage.isBudgetAvailableFieldVisible());
     }
+
     @Then("^Search 'Missing or repeat data to complete register category!' alert on 'Expenses page'$")
     public void searchMissingOrRepeatDataToCompleteRegisterCategoryAlertOnExpensesPage() {
         Assert.assertTrue(expensesPage.isCategoryFailAlertVisible());
@@ -361,14 +367,14 @@ public class PersonalWalletSteps {
 
     @Then("^Reports table shows$")
     public void asssertReportsTable(DataTable table) {
-        List< List<String> > reportsPageTable = reportsPage.getTableAsListOfLists();
-        List< List<String> > tableAsList = table.raw();
+        List<List<String>> reportsPageTable = reportsPage.getTableAsListOfLists();
+        List<List<String>> tableAsList = table.raw();
         Assert.assertEquals(reportsPageTable, tableAsList);
     }
 
     @Then("^check the 'Total Amount' label is \"([^\"]*)\" on 'Main Menu'$")
     public void checkTheTotalAmountLabelIsOnMainMenu(String amount) {
-        Assert.assertEquals(mainMenu.getAmount(), "Total amount:\n"+amount+"\n Bs.");
+        Assert.assertEquals(mainMenu.getAmount(), "Total amount:\n" + amount + "\n Bs.");
     }
 
     @And("^click 'PersonalWallet' button on 'Header' page$")
@@ -385,6 +391,7 @@ public class PersonalWalletSteps {
     public void searchOptionIsNotOnTransactionNameSelectorOnExpensesPage(String option) {
         Assert.assertTrue(expensesPage.searchOptionOnTransactionNameSelector(option));
     }
+
     @Then("^Search 'transaction fail' alert on 'Income Page'$")
     public void searchTransactionFailAlertOnIncomePage() {
         Assert.assertTrue(incomePage.isTransactionFailAlertVisible());
@@ -440,6 +447,7 @@ public class PersonalWalletSteps {
     public void clearCategoryNameFieldOnExpensesPage() {
         expensesPage = (ExpensesPage) expensesPage.clearCategoryNameField();
     }
+
     @Then("^search 'Success Message' alert on 'Transfer' page$")
     public void searchSuccessMessageAlertOnTransferPage() {
         Assert.assertTrue(transferPage.isTransferSuccessMessageVisible());
@@ -514,5 +522,33 @@ public class PersonalWalletSteps {
     @And("^Verify 'Total Amount' label is the same price on 'Cart' page and on 'store' page$")
     public void verifyTotalAmountLabelIsTheSamePriceOnCartPageAndOnStorePage() {
         Assert.assertEquals(storePrice.concat(".00"), carrito.getTotalAmount());
+    }
+
+    @Then("^search item with by name and price$")
+    public void searchItemWithByNameAndPrice(List<String> table) {
+        Assert.assertEquals(store.getPrecio(), table.get(1));
+        Assert.assertEquals(store.productTitle(), table.get(0));
+    }
+
+    @Then("^search item with by name and price \\(map\\)$")
+    public void searchItemWithByNameAndPriceMap(DataTable table) {
+        for (Map<String, String> data: table.asMaps(String.class,String.class)) {
+            Assert.assertEquals(data.get("price"),store.getPrecio());
+            Assert.assertEquals(store.productTitle(), data.get("title"));
+        }
+
+    }
+
+    @Then("^search item with by name and price \\(ENUM\\)$")
+    public void searchItemWithByNameAndPriceENUM(DataTable table) {
+        for (Map<String, String> data: table.asMaps(String.class,String.class)) {
+            map.put(PRODUCTDATATYPE.valueOf("TITLE"), data.get("title"));
+            map.put(PRODUCTDATATYPE.valueOf("PRICE"), data.get("price"));
+        }
+    }
+
+    @And("^print product \"([^\"]*)\"$")
+    public void printProduct(String arg0) throws Throwable {
+        System.out.println(map.get(PRODUCTDATATYPE.valueOf(arg0)));
     }
 }

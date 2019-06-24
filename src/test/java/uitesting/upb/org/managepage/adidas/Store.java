@@ -20,4 +20,7 @@ public class Store extends BasePage {
         Events.click(product);
         return new ProductView();
     }
+    public String productTitle () {
+        return Events.getTitle(product);
+    }
 }

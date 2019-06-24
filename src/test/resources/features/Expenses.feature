@@ -1,4 +1,5 @@
 Feature: Manage Expenses
+
   Background:
     Given The 'AccountHomeMenu' is loaded
     Given filled 'Account name' field on 'AccountHomeMenu' with "Test"
