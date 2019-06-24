@@ -39,7 +39,7 @@ Feature: Test reports for new account
     And fill 'AmountBS' field with "1000" on 'Income Page'
     And fill 'DateField' field with "11/04/2019" on 'Income Page'
     And click 'Register Transaction' button on 'Income Page'
-    Given Click 'Personal wallet' button on 'income' page
+    Given click 'PersonalWallet' button on 'Header' page
     And Click 'Reports' button on 'main menu' page
     When Select 'By date' in 'Select report type' selector on 'reports' page
     And Fill 'From' date picker with "12/01/2019" on 'reports' page
@@ -62,14 +62,14 @@ Feature: Test reports for new account
     And fill 'AmountBS' field with "1000" on 'Income Page'
     And fill 'DateField' field with "11/04/2019" on 'Income Page'
     And click 'Register Transaction' button on 'Income Page'
-    Given Click 'Personal wallet' button on 'income' page
+    Given click 'PersonalWallet' button on 'Header' page
     And click 'Expenses' button on 'MainMenu' page
     Given fill 'expense name' field with "Egreso1" on 'Expenses Page'
     And select "Others" values on 'category' selector on 'Expenses Page'
     And fill 'AmountBS' field with "1000" on 'Expenses Page'
     And fill 'Date of the Transaction' field with "11/04/2019" on 'Expenses Page'
     And click 'Register Transaction' button on 'Expenses Page'
-    Given Click 'Personal wallet' button on 'expense' page
+    Given click 'PersonalWallet' button on 'Header' page
     And Click 'Reports' button on 'main menu' page
     When Select 'By category' in 'Select report type' selector on 'reports' page
     And Click 'Show report' button on 'reports' page
@@ -87,14 +87,14 @@ Feature: Test reports for new account
     And fill 'AmountBS' field with "100" on 'Income Page'
     And fill 'DateField' field with "12/04/2019" on 'Income Page'
     And click 'Register Transaction' button on 'Income Page'
-    Given Click 'Personal wallet' button on 'income' page
+    Given click 'PersonalWallet' button on 'Header' page
     And click 'Expenses' button on 'MainMenu' page
     Given fill 'expense name' field with "Expense1" on 'Expenses Page'
     And select "Others" values on 'category' selector on 'Expenses Page'
     And fill 'AmountBS' field with "50" on 'Expenses Page'
     And fill 'Date of the Transaction' field with "11/04/2019" on 'Expenses Page'
     And click 'Register Transaction' button on 'Expenses Page'
-    Given Click 'Personal wallet' button on 'expense' page
+    Given click 'PersonalWallet' button on 'Header' page
     And Click 'Reports' button on 'main menu' page
     When Select 'By category' in 'Select report type' selector on 'reports' page
     And Click 'Show report' button on 'reports' page
@@ -108,14 +108,14 @@ Feature: Test reports for new account
     And fill 'AmountBS' field with "100" on 'Income Page'
     And fill 'DateField' field with "12/04/2019" on 'Income Page'
     And click 'Register Transaction' button on 'Income Page'
-    Given Click 'Personal wallet' button on 'income' page
+    Given click 'PersonalWallet' button on 'Header' page
     And click 'Expenses' button on 'MainMenu' page
     Given fill 'expense name' field with "Expense1" on 'Expenses Page'
     And select "Others" values on 'category' selector on 'Expenses Page'
     And fill 'AmountBS' field with "50" on 'Expenses Page'
     And fill 'Date of the Transaction' field with "11/04/2019" on 'Expenses Page'
     And click 'Register Transaction' button on 'Expenses Page'
-    Given Click 'Personal wallet' button on 'expense' page
+    Given click 'PersonalWallet' button on 'Header' page
     And Click 'Reports' button on 'main menu' page
     When Select 'By category' in 'Select report type' selector on 'reports' page
     And Click 'Show report' button on 'reports' page

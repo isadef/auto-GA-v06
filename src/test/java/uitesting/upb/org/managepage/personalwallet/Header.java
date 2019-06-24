@@ -1,24 +1,30 @@
 package uitesting.upb.org.managepage.personalwallet;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import uitesting.upb.org.manageevents.Events;
 import uitesting.upb.org.managepage.BasePage;
 
 public class Header extends BasePage {
-    @FindBy (id="account-main-menu")
-    WebElement personalWalletButton;
+    @FindBy(xpath = "//a[@class='navbar-brand']")
+    private WebElement personalWalletButton;
 
-    @FindBy (id = "exit")
+    @FindBy(xpath = "//nav//form//a")
     private WebElement exitButton;
 
     @FindBy (id = "settings")
     private WebElement settingsButton;
 
-    public Header clickPersonalWalletButton() {
+    public MainMenu clickPersonalWalletButton() {
         Events.click(personalWalletButton);
-        return this;
+        return new MainMenu();
     }
+
+    public boolean isAccountSettingsPresent() {
+        return Events.getNumberOfElements(new By.ById("settings")) >= 1;
+    }
+
     public AccountHomeMenu clickExitButton() {
         Events.click(exitButton);
         return new AccountHomeMenu();

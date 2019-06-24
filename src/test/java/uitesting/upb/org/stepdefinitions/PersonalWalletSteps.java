@@ -14,6 +14,7 @@ import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
 import uitesting.upb.org.webdrivermanager.DriverManager;
 
 import java.util.List;
+import java.util.Map;
 
 public class PersonalWalletSteps {
 
@@ -28,12 +29,12 @@ public class PersonalWalletSteps {
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
-        accountHomeMenu.writeAccountName(accountName);
+        accountHomeMenu = accountHomeMenu.writeAccountName(accountName);
     }
 
     @Given("^Click 'Add' button on 'home menu' page$")
     public void clickAddButton() {
-        accountHomeMenu.clickAddButton();
+        accountHomeMenu = accountHomeMenu.clickAddButton();
     }
 
     @Given("^Click \"(.*)\" button on 'home menu' page$")
@@ -49,37 +50,27 @@ public class PersonalWalletSteps {
 
     @And("^Select 'By category' in 'Select report type' selector on 'reports' page$")
     public void selectByCategoryOption() {
-        reportsPage.selectOptionByValue("category");
+        reportsPage = reportsPage.selectOptionByValue("category");
     }
 
     @Given("^Select 'By date' in 'Select report type' selector on 'reports' page$")
     public void selectByDateOption() {
-        reportsPage.selectOptionByValue("date");
+        reportsPage = reportsPage.selectOptionByValue("date");
     }
 
     @And("^Click 'Show report' button on 'reports' page$")
     public void clickShowReportButton() {
-        reportsPage.clickShowReportButton();
-    }
-
-    @Given("^Click 'Personal wallet' button on 'income' page$")
-    public void clickPersonalWalletButtonOnIncomePage() {
-        mainMenu = incomePage.clickPersonalWalletLink();
-    }
-
-    @Given("^Click 'Personal wallet' button on 'expense' page$")
-    public void clickPersonalWalletButtonOnExpensePage() {
-        mainMenu = expensesPage.clickPersonalWalletLink();
+        reportsPage = reportsPage.clickShowReportButton();
     }
 
     @When("^Fill 'From' date picker with \"([^\"]*)\" on 'reports' page$")
     public void fillFromDatePickerOnReportsPage(String startDate) {
-        reportsPage.fillStartDate(startDate);
+        reportsPage = reportsPage.fillStartDate(startDate);
     }
 
     @And("^Fill 'To' date picker with \"([^\"]*)\" on 'reports' page$")
     public void fillToDatePickerOnReportsPage(String endDate) {
-        reportsPage.fillEndDate(endDate);
+        reportsPage = reportsPage.fillEndDate(endDate);
     }
 
     @Then("^The title is \"(.*)\"$")
@@ -368,7 +359,7 @@ public class PersonalWalletSteps {
 
     @And("^click 'PersonalWallet' button on 'Header' page$")
     public void clickPersonalWalletButtonOnHeaderPage() {
-        header = header.clickPersonalWalletButton();
+        mainMenu = header.clickPersonalWalletButton();
     }
 
     @And("^Check number of transactions is \"([^\"]*)\" on 'Select a Transaction' on 'Expenses' page$")
@@ -484,6 +475,58 @@ public class PersonalWalletSteps {
     public void selectNameOnExpensesPage(String name) throws Throwable {
         if (name != "") {
             expensesPage = (ExpensesPage) expensesPage.selectTransactionName(name);
+        }
+    }
+
+    @Given("^Click 'General' button on 'home menu' page$")
+    public void clickAccountButtonOnHomeMenuPage() {
+        reportsPage = accountHomeMenu.clickGeneralAccount();
+        header = LoadPage.loadHeader();
+    }
+
+    @Given("^click 'Exit' button on 'header' page$")
+    public void clickExitButtonOnHeaderPage() {
+        accountHomeMenu = header.clickExitButton();
+    }
+
+    @Then("^'Account settings' link does not exist on 'header' page$")
+    public void accountSettingsLinkDoesNotExistOnHeaderPage() {
+        Assert.assertEquals(false, header.isAccountSettingsPresent());
+    }
+
+    @Then("^The accounts \"([^\"]*)\" should exist on 'home menu' page$")
+    public void theAccountsListOfAccountsExistOnHomeMenuPage(List<String> accountNames) {
+        for (String accountName : accountNames) {
+            Assert.assertEquals(true, accountHomeMenu.isAccountButtonVisible(accountName));
+        }
+    }
+
+    @And("^Click \"([^\"]*)\" option on 'main menu' page$")
+    public void clickOptionOnMainMenuPage(MenuOptions option) {
+        switch (option) {
+            case Income:
+                incomePage = mainMenu.clickIncomeButton();
+                break;
+            case Expenses:
+                expensesPage = mainMenu.clickExpensesButton();
+                break;
+            case Transfer:
+                transferPage = mainMenu.clickTransferButton();
+                break;
+            case Report:
+                reportsPage = mainMenu.clickReportsButton();
+                break;
+        }
+    }
+
+    @Given("^Register the following incomes on 'income' page$")
+    public void registerTheFollowingIncomesOnIncomePage(List<Map<String, String>> incomes) {
+        for (Map<String, String> income: incomes) {
+            incomePage = (IncomePage) incomePage.fillTransactionNameField(income.get("Name"));
+            incomePage = (IncomePage) incomePage.selectCategory(income.get("Category"));
+            incomePage = (IncomePage) incomePage.fillAmountField(income.get("Amount"));
+            incomePage = (IncomePage) incomePage.fillDateField(income.get("Date"));
+            incomePage = (IncomePage) incomePage.clickRegisterTransactionButton();
         }
     }
 
