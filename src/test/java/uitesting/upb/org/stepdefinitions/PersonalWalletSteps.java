@@ -9,6 +9,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
+import uitesting.upb.org.manageParameters.EnumValues;
 import uitesting.upb.org.manageParameters.MapQuantity;
 import uitesting.upb.org.managepage.adidas.AdidasMainPage;
 import uitesting.upb.org.managepage.adidas.CalzadoPage;
@@ -33,6 +34,8 @@ public class PersonalWalletSteps {
     private AdidasMainPage adidasPage;
     private CalzadoPage calzadoPage;
     private CarritoPage carritoPage;
+    private String text;
+
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
         accountHomeMenu.writeAccountName(accountName);
@@ -488,8 +491,10 @@ public class PersonalWalletSteps {
 
     @And("^search 'cantidad' text with \"([^\"]*)\" on 'calzado page'$")
     public void searchCantidadTextWithOnCalzadoPage(String text) {
-        System.out.println(text + " // "+ calzadoPage.getText());
-        Assert.assertEquals(calzadoPage.getText(), MapQuantity.getQuantity(text));
+        this.text = text;
+        MapQuantity quantity = new MapQuantity();
+        Assert.assertEquals(calzadoPage.getText(), quantity.getQuantity("CALZADO DE FÚTBOL NEMEZIZ 19.3 TERRENO FIRME"));
+
 
     }
 
@@ -506,7 +511,8 @@ public class PersonalWalletSteps {
 
     @And("^'titlefield' with \"([^\"]*)\" is displayed on 'carritopage'$")
     public void titlefieldWithIsDisplayedOnCarritopage(String title) {
-        Assert.assertEquals(carritoPage.getTitleText(),title);
+
+        Assert.assertEquals(carritoPage.getTitleText(), EnumValues.getFullName(title));
     }
 
     @And("^'totalproductofield' is displayed with \"([^\"]*)\" on 'carritopage'$")

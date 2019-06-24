@@ -2,7 +2,7 @@ package uitesting.upb.org.manageParameters;
 
 public enum EnumValues {
    
-    CalzadoNemesis("calzado Prueba 1");
+    CalzadoNemesis("CALZADO DE FÚTBOL NEMEZIZ 19.3 TERRENO FIRME");
 
     private String totalName;
 
@@ -11,15 +11,15 @@ public enum EnumValues {
         this.totalName = totalName;
     }
 
-    public String getQuantity() {
+    public String getTotalName() {
         return totalName;
     }
 
-    public static String testMyEnum(String calzado) {
+    public static String getFullName(String calzado) {
 
         switch (calzado) {
             case "calzado 1":
-                return CalzadoNemesis.getQuantity();
+                return CalzadoNemesis.getTotalName();
 
             default:
                return "";
