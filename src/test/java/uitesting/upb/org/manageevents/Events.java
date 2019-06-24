@@ -91,4 +91,7 @@ public class Events {
     }
 
 
+    public static String getTitle(WebElement product) {
+        return product.getAttribute("title");
+    }
 }

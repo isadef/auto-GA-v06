@@ -1,6 +1,7 @@
 package uitesting.upb.org.stepdefinitions;
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,7 +13,9 @@ import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PersonalWalletSteps {
 
@@ -30,6 +33,7 @@ public class PersonalWalletSteps {
     private IncomePage incomePage;
     private AccountSettingsPage accountSettingsPage;
     private String storePrice;
+    private Map<PRODUCTDATATYPE, String> map = new HashMap<>();
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
@@ -518,5 +522,33 @@ public class PersonalWalletSteps {
     @And("^Verify 'Total Amount' label is the same price on 'Cart' page and on 'store' page$")
     public void verifyTotalAmountLabelIsTheSamePriceOnCartPageAndOnStorePage() {
         Assert.assertEquals(storePrice.concat(".00"), carrito.getTotalAmount());
+    }
+
+    @Then("^search item with by name and price$")
+    public void searchItemWithByNameAndPrice(List<String> table) {
+        Assert.assertEquals(store.getPrecio(), table.get(1));
+        Assert.assertEquals(store.productTitle(), table.get(0));
+    }
+
+    @Then("^search item with by name and price \\(map\\)$")
+    public void searchItemWithByNameAndPriceMap(DataTable table) {
+        for (Map<String, String> data: table.asMaps(String.class,String.class)) {
+            Assert.assertEquals(data.get("price"),store.getPrecio());
+            Assert.assertEquals(store.productTitle(), data.get("title"));
+        }
+
+    }
+
+    @Then("^search item with by name and price \\(ENUM\\)$")
+    public void searchItemWithByNameAndPriceENUM(DataTable table) {
+        for (Map<String, String> data: table.asMaps(String.class,String.class)) {
+            map.put(PRODUCTDATATYPE.valueOf("TITLE"), data.get("title"));
+            map.put(PRODUCTDATATYPE.valueOf("PRICE"), data.get("price"));
+        }
+    }
+
+    @And("^print product \"([^\"]*)\"$")
+    public void printProduct(String arg0) throws Throwable {
+        System.out.println(map.get(PRODUCTDATATYPE.valueOf(arg0)));
     }
 }
