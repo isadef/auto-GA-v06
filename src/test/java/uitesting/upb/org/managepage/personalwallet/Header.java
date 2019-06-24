@@ -13,17 +13,24 @@ public class Header extends BasePage {
     @FindBy(xpath = "//nav//form//a")
     private WebElement exitButton;
 
+    @FindBy (id = "settings")
+    private WebElement settingsButton;
+
     public MainMenu clickPersonalWalletButton() {
         Events.click(personalWalletButton);
         return new MainMenu();
+    }
+
+    public boolean isAccountSettingsPresent() {
+        return Events.getNumberOfElements(new By.ById("settings")) >= 1;
     }
 
     public AccountHomeMenu clickExitButton() {
         Events.click(exitButton);
         return new AccountHomeMenu();
     }
-
-    public boolean isAccountSettingsPresent() {
-        return Events.getNumberOfElements(new By.ById("settings")) >= 1;
+    public AccountSettingsPage clickSettingsButton() {
+        Events.click(settingsButton);
+        return new AccountSettingsPage();
     }
 }

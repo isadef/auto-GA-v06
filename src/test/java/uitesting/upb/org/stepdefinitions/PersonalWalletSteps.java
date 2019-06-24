@@ -11,6 +11,7 @@ import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
 import uitesting.upb.org.managepage.personalwallet.Transactions.IncomePage;
+import uitesting.upb.org.webdrivermanager.DriverManager;
 
 import java.util.List;
 import java.util.Map;
@@ -113,7 +114,7 @@ public class PersonalWalletSteps {
         accountHomeMenu.clickAddButton();
     }
 
-    @When("^Click 'Account Settings' button on 'MainMenu' page$")
+    @When("^Click 'Account Settings' button on 'Header'$")
     public void clickAccountSettingsButton() {
         accountSettingsPage = mainMenu.clickAccountSettingsButton();
     }
@@ -138,7 +139,7 @@ public class PersonalWalletSteps {
         accountSettingsPage.clickChangeNameButton();
     }
 
-    @And("^Click 'Exit' button on 'AccountSettings' page$")
+    @And("^Click 'Exit' button on 'Header'$")
     public void clickExitButton() {
         accountHomeMenu = accountSettingsPage.clickExitButton();
     }
@@ -186,7 +187,7 @@ public class PersonalWalletSteps {
 
     @And("^select \"([^\"]*)\" values on 'category' selector on 'Expenses Page'$")
     public void selectValuesOnCategorySelectorOnExpensesPage(String category) {
-       expensesPage = (ExpensesPage) expensesPage.selectCategory(category);
+        expensesPage = (ExpensesPage) expensesPage.selectCategory(category);
     }
 
     @And("^fill 'AmountBS' field with \"([^\"]*)\" on 'Expenses Page'$")
@@ -440,15 +441,17 @@ public class PersonalWalletSteps {
         expensesPage = (ExpensesPage) expensesPage.fillNewNameField(newname);
     }
 
-    @And("^select category \"([^\"]*)\" in 'new caegory' on 'expenses page'$")
-    public void selectCategoryInNewCaegoryOnExpensesPage(String arg0) {
-        expensesPage = (ExpensesPage) expensesPage.selectNewCategory(arg0);
+    @And("^select category \"([^\"]*)\" in 'new category' on 'expenses page'$")
+    public void selectCategoryInNewCaegoryOnExpensesPage(String category) {
+        if (category != ""){
+            expensesPage = (ExpensesPage) expensesPage.selectNewCategory(category);
+        }
     }
 
 
     @And("^fill 'new date' field with \"([^\"]*)\" on 'expense page'$")
     public void fillNewDateFieldWithOnExpensePage(String date) throws Throwable {
-        expensesPage = (ExpensesPage)expensesPage.fillNewAmountField(date);
+        expensesPage = (ExpensesPage)expensesPage.fillNewDateField(date);
     }
 
 
@@ -469,8 +472,10 @@ public class PersonalWalletSteps {
     }
 
     @Then("^Select 'name' \"([^\"]*)\" on 'Expenses Page'$")
-    public void selectNameOnExpensesPage(String arg0) throws Throwable {
-        expensesPage = (ExpensesPage) expensesPage.selectTransactionName(arg0);
+    public void selectNameOnExpensesPage(String name) throws Throwable {
+        if (name != "") {
+            expensesPage = (ExpensesPage) expensesPage.selectTransactionName(name);
+        }
     }
 
     @Given("^Click 'General' button on 'home menu' page$")
@@ -523,5 +528,54 @@ public class PersonalWalletSteps {
             incomePage = (IncomePage) incomePage.fillDateField(income.get("Date"));
             incomePage = (IncomePage) incomePage.clickRegisterTransactionButton();
         }
+    }
+
+    @Then("^Search 'changeSuccess' alert on 'Expenses page'$")
+    public void searchChangeSuccessAlertOnExpensesPage() {
+        Assert.assertTrue(expensesPage.isChangeSuccessAlertVisible());
+    }
+
+    @And("^Close Browser$")
+    public void closeBrowser() {
+        DriverManager.getInstance().closeWebDriver();
+    }
+
+    @And("^\"([^\"]*)\" row is visible on 'Reports' page$")
+    public void rowShouldBeVisibleOnReportsPage(String row) {
+        Assert.assertTrue(reportsPage.isRowVisible(row));
+    }
+
+    @Then("^Click on 'x' button in row \"([^\"]*)\" on 'Reports' page$")
+    public void clicOnXButtonInRowOnReportsPage(String row) {
+        reportsPage = reportsPage.deleteRow(row);
+    }
+
+    @And("^\"([^\"]*)\" row is not visible on 'Reports' page$")
+    public void rowIsNotVisibleOnReportsPage(String row) {
+        Assert.assertFalse(reportsPage.isRowVisible(row));
+    }
+
+    @Then("^click 'new amount' field on 'Expenses' page$")
+    public void clickNewAmountFieldOnExpensesPage() {
+        expensesPage = (ExpensesPage) expensesPage.clickNewAmountField();
+    }
+
+    @And("^'new amount' field should be empty on 'Expenses' page$")
+    public void newAmountFieldShouldBeEmptyOnExpensesPage() {
+        Assert.assertEquals("", expensesPage.getNewAmountFieldText());
+    }
+    @And("^Change 'Account name' field on 'AccountSettings' to \"([^\"]*)\"$")
+    public void changeAccountNameFieldOnAccountSettingsTo(String arg0) {
+        accountSettingsPage.setNewAccountName(arg0);
+    }
+
+    @Then("^'Delete account' button is visible$")
+    public void deleteAccountButtonIsVisible() {
+        Assert.assertTrue(accountSettingsPage.deleteAccountButtonIsVisible());
+    }
+
+    @And("^'Change name' button is visible$")
+    public void changeNameButtonIsVisible() {
+        Assert.assertTrue(accountSettingsPage.changeNameButtonIsVisible());
     }
 }

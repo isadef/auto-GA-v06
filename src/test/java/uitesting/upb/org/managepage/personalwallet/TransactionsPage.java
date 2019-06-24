@@ -173,6 +173,15 @@ public class TransactionsPage extends BasePage {
         return Events.isWebElementVisible(changeSuccesAlert);
     }
 
+    public TransactionsPage clickNewAmountField () {
+        Events.click(newAmountField);
+        return this;
+    }
+
+    public String getNewAmountFieldText () {
+        return Events.getText(newAmountField);
+    }
+
     public boolean isChangeFailAlertVisible() {
         return Events.isWebElementVisible(changeFailAlert);
     }
