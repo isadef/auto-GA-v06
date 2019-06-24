@@ -123,7 +123,7 @@ public class PersonalWalletSteps {
         accountHomeMenu.clickAddButton();
     }
 
-    @When("^Click 'Account Settings' button on 'MainMenu' page$")
+    @When("^Click 'Account Settings' button on 'Header'$")
     public void clickAccountSettingsButton() {
         accountSettingsPage = mainMenu.clickAccountSettingsButton();
     }
@@ -148,7 +148,7 @@ public class PersonalWalletSteps {
         accountSettingsPage.clickChangeNameButton();
     }
 
-    @And("^Click 'Exit' button on 'AccountSettings' page$")
+    @And("^Click 'Exit' button on 'Header'$")
     public void clickExitButton() {
         accountHomeMenu = accountSettingsPage.clickExitButton();
     }
@@ -196,7 +196,7 @@ public class PersonalWalletSteps {
 
     @And("^select \"([^\"]*)\" values on 'category' selector on 'Expenses Page'$")
     public void selectValuesOnCategorySelectorOnExpensesPage(String category) {
-       expensesPage = (ExpensesPage) expensesPage.selectCategory(category);
+        expensesPage = (ExpensesPage) expensesPage.selectCategory(category);
     }
 
     @And("^fill 'AmountBS' field with \"([^\"]*)\" on 'Expenses Page'$")
@@ -453,7 +453,7 @@ public class PersonalWalletSteps {
     @And("^select category \"([^\"]*)\" in 'new category' on 'expenses page'$")
     public void selectCategoryInNewCaegoryOnExpensesPage(String category) {
         if (category != ""){
-        expensesPage = (ExpensesPage) expensesPage.selectNewCategory(category);
+            expensesPage = (ExpensesPage) expensesPage.selectNewCategory(category);
         }
     }
 
@@ -483,7 +483,7 @@ public class PersonalWalletSteps {
     @Then("^Select 'name' \"([^\"]*)\" on 'Expenses Page'$")
     public void selectNameOnExpensesPage(String name) throws Throwable {
         if (name != "") {
-        expensesPage = (ExpensesPage) expensesPage.selectTransactionName(name);
+            expensesPage = (ExpensesPage) expensesPage.selectTransactionName(name);
         }
     }
 
@@ -520,5 +520,19 @@ public class PersonalWalletSteps {
     @And("^'new amount' field should be empty on 'Expenses' page$")
     public void newAmountFieldShouldBeEmptyOnExpensesPage() {
         Assert.assertEquals("", expensesPage.getNewAmountFieldText());
+    }
+    @And("^Change 'Account name' field on 'AccountSettings' to \"([^\"]*)\"$")
+    public void changeAccountNameFieldOnAccountSettingsTo(String arg0) {
+        accountSettingsPage.setNewAccountName(arg0);
+    }
+
+    @Then("^'Delete account' button is visible$")
+    public void deleteAccountButtonIsVisible() {
+        Assert.assertTrue(accountSettingsPage.deleteAccountButtonIsVisible());
+    }
+
+    @And("^'Change name' button is visible$")
+    public void changeNameButtonIsVisible() {
+        Assert.assertTrue(accountSettingsPage.changeNameButtonIsVisible());
     }
 }
