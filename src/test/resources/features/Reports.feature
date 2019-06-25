@@ -127,3 +127,8 @@ Feature: Test reports for new account
     Given Select 'By date' in 'Select report type' selector on 'reports' page
     When Click 'Show report' button on 'reports' page
     Then "Please insert valid start and end dates" error shows up on 'reports' page
+
+  Scenario: Check reports UI has expected elements
+    Given Click "Test" button on 'home menu' page
+    When Click 'Reports' button on 'main menu' page
+    Then Reports UI shows expected elements

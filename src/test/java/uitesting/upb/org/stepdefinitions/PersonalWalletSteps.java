@@ -1,12 +1,12 @@
 package uitesting.upb.org.stepdefinitions;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
@@ -577,5 +577,14 @@ public class PersonalWalletSteps {
     @And("^'Change name' button is visible$")
     public void changeNameButtonIsVisible() {
         Assert.assertTrue(accountSettingsPage.changeNameButtonIsVisible());
+    }
+
+    @Then("^Reports UI shows expected elements$")
+    public void reportsUIShowsExpectedElements() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals("Select the reporrt type:" , reportsPage.getSelectLabelText());
+        softAssert.assertEquals("From:" , reportsPage.getFromLabelText());
+        softAssert.assertEquals("To:" , reportsPage.getToLabelText());
+        softAssert.assertAll();
     }
 }

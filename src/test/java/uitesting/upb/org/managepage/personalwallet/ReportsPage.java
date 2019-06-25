@@ -2,7 +2,6 @@ package uitesting.upb.org.managepage.personalwallet;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import uitesting.upb.org.manageevents.Events;
@@ -32,6 +31,16 @@ public class ReportsPage extends BasePage {
 
     @FindBy(xpath = "//table")
     private WebElement reportsTable;
+
+    @FindBy(xpath = "//label[@for='selectType']")
+    private WebElement selectLabel;
+
+    @FindBy(xpath = "//label[@for='startDate']")
+    private WebElement fromLabel;
+
+    @FindBy(xpath = "//label[@for='endDate']")
+    private WebElement toLabel;
+
 
     public String getTitle() {
         return title.getText();
@@ -111,5 +120,26 @@ public class ReportsPage extends BasePage {
         WebElement webElement = Events.getElementByBy(new By.ByXPath("//*/tbody/tr[td [contains(.,'" + element + "')]]/button"));
         Events.click(webElement);
         return this;
+    }
+
+    public String getSelectLabelText() {
+        if (Events.isWebElementVisible(selectLabel)) {
+            return selectLabel.getText();
+        }
+        return "";
+    }
+
+    public String getFromLabelText() {
+        if (Events.isWebElementVisible(fromLabel)) {
+            return fromLabel.getText();
+        }
+        return "";
+    }
+
+    public String getToLabelText() {
+        if (Events.isWebElementVisible(toLabel)) {
+            return toLabel.getText();
+        }
+        return "";
     }
 }
