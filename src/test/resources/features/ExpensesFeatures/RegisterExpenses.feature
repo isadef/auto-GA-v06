@@ -1,19 +1,18 @@
 Feature: Register expenses
   Background:
-    Given The 'AccountHomeMenu' is loaded
+    Given 'AccountHomeMenu' page is loaded
     Given filled 'Account name' field on 'AccountHomeMenu' with "Test"
     And clicked 'Add' button on 'AccountHomeMenu'
     Then  clicked "Test" button on 'AccountHomeMenu'
+    Then click 'Income' button on 'MainMenu' page
+    And fill 'income name' field with "Prueba income" on 'Income Page'
+    And select "Others" values on 'category' selector on 'Income Page'
+    And fill 'AmountBS' field with "100" on 'Income Page'
+    And fill 'DateField' field with "05/23/2019" on 'Income Page'
+    And click 'Register Transaction' button on 'Income Page'
+    Then Search 'transaction success' alert on 'Income Page'
+    And click 'PersonalWallet' button on 'Header' page
 
-   Scenario: Income requirement for tests
-     Then click 'Income' button on 'MainMenu' page
-     And fill 'income name' field with "Prueba income" on 'Income Page'
-     And select "Others" values on 'category' selector on 'Income Page'
-     And fill 'AmountBS' field with "100" on 'Income Page'
-     And fill 'DateField' field with "05/23/2019" on 'Income Page'
-     And click 'Register Transaction' button on 'Income Page'
-     Then Search 'transaction success' alert on 'Income Page'
-     And click 'PersonalWallet' button on 'Header' page
 
   Scenario Outline: Register empty expenses
     Given click 'Expenses' button on 'MainMenu' page
@@ -43,7 +42,15 @@ Feature: Register expenses
 
     Scenario Outline: Register expense with incorrect data
       Given click 'Expenses' button on 'MainMenu' page
-      And fill 'expense name' field with "<Name>" on 'Expenses Page'
+      And fill 'expense name' field with "Prueba" on 'Expenses Page'
+      And select "Others" values on 'category' selector on 'Expenses Page'
+      And fill 'AmountBS' field with "1" on 'Expenses Page'
+      And fill 'Date of the Transaction' field with "05/23/2019" on 'Expenses Page'
+      And click 'Register Transaction' button on 'Expenses Page'
+      Then Search 'transaction success' alert on 'Expenses' page
+      And click 'PersonalWallet' button on 'Header' page
+      And click 'Expenses' button on 'MainMenu' page
+      Then fill 'expense name' field with "<Name>" on 'Expenses Page'
       And select "<Category>" values on 'category' selector on 'Expenses Page'
       And fill 'AmountBS' field with "<Amount>" on 'Expenses Page'
       And fill 'Date of the Transaction' field with "<Date>" on 'Expenses Page'

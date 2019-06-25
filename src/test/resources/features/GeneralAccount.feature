@@ -1,7 +1,7 @@
 Feature: General account
 
   Background:
-    Given The 'AccountHomeMenu' is loaded
+    Given 'AccountHomeMenu' page is loaded
     Given Fill account name field on 'home menu' page with "Test"
     And Click 'Add' button on 'home menu' page
     Given Fill account name field on 'home menu' page with "Test2"

@@ -1,12 +1,10 @@
 Feature: Modify Expense Feature
 
   Background:
-    Given The 'AccountHomeMenu' is loaded
+    Given 'AccountHomeMenu' page is loaded
     Given filled 'Account name' field on 'AccountHomeMenu' with "Test"
     And clicked 'Add' button on 'AccountHomeMenu'
     Then  clicked "Test" button on 'AccountHomeMenu'
-
-  Scenario: Income Pre requirement for testing
     Given click 'Income' button on 'MainMenu' page
     And fill 'income name' field with "Prueba income" on 'Income Page'
     And select "Others" values on 'category' selector on 'Income Page'
@@ -15,27 +13,14 @@ Feature: Modify Expense Feature
     And click 'Register Transaction' button on 'Income Page'
     Then Search 'transaction success' alert on 'Income Page'
     And click 'PersonalWallet' button on 'Header' page
-
-  Scenario Outline: Expenses Pre requirement for testing
     Then click 'Expenses' button on 'MainMenu' page
-    And fill 'expense name' field with "<Name>" on 'Expenses Page'
+    And fill 'expense name' field with "Prueba" on 'Expenses Page'
     And select "Others" values on 'category' selector on 'Expenses Page'
     And fill 'AmountBS' field with "1" on 'Expenses Page'
     And fill 'Date of the Transaction' field with "05/23/2019" on 'Expenses Page'
     And click 'Register Transaction' button on 'Expenses Page'
     Then Search 'transaction success' alert on 'Expenses' page
     And click 'PersonalWallet' button on 'Header' page
-    Examples:
-      | Name          |
-      | Prueba        |
-      | EmptyCategory |
-      | EmptyNewName  |
-      | EmptyDate     |
-      | EmptyAmount   |
-      | SameName      |
-      | NegativeAmount|
-      | Zero Amount   |
-      | HugeAmount    |
 
   Scenario: Change a transaction
     Given click 'Expenses' button on 'MainMenu' page
@@ -61,15 +46,15 @@ Feature: Modify Expense Feature
     And click 'PersonalWallet' button on 'Header' page
     Examples:
       | Name          | new Name        | new Category | new Amount | new Date   |
-      | EmptyNewName  |                 | Others       | 1          | 05/23/2019 |
-      | EmptyDate     | EmptyDateError  | Others       | 1          |            |
-      | SameName      | SameName        | Others       | 1          | 05/23/2019 |
-      | NegativeAmount| NegativeWrong   | Others       | -10        | 05/23/2019 |
-      | HugeAmount    | HugeWrong       | Others       | 100000     | 05/23/2019 |
-      | EmptyAmount   | EmptyAWrong     | Others       |            | 05/23/2019 |
+      | Prueba        |                 | Others       | 1          | 05/23/2019 |
+      | Prueba        | EmptyDateError  | Others       | 1          |            |
+      | Prueba        | Prueba          | Others       | 1          | 05/23/2019 |
+      | Prueba        | NegativeWrong   | Others       | -10        | 05/23/2019 |
+      | Prueba        | HugeWrong       | Others       | 100000     | 05/23/2019 |
+      | Prueba        | EmptyAWrong     | Others       |            | 05/23/2019 |
       |               | EmptyNameWrong  | Others       | 1          | 05/23/2019 |
-      | EmptyCategory | EmptyCatWtrong  |              | 1          | 05/23/2019 |
-      | ZeroAmount    | WrongZeroAmount | Others       | 0          | 05/23/2019 |
+      | Prueba        | EmptyCatWtrong  |              | 1          | 05/23/2019 |
+      | Prueba        | WrongZeroAmount | Others       | 0          | 05/23/2019 |
 
     Scenario: 'New Amount' field stars empty
       Given click 'Expenses' button on 'MainMenu' page

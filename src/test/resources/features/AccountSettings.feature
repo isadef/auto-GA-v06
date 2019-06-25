@@ -1,6 +1,6 @@
 Feature: Verify Account Settings Functionality
   Background:
-    Given The 'AccountHomeMenu' is loaded
+    Given 'AccountHomeMenu' page is loaded
     And filled 'Account name' field on 'AccountHomeMenu' with "Settings"
     And clicked 'Add' button on 'AccountHomeMenu'
 

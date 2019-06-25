@@ -1,6 +1,6 @@
 Feature: Manage Income
   Background:
-    Given The 'AccountHomeMenu' is loaded
+    Given 'AccountHomeMenu' page is loaded
     Given filled 'Account name' field on 'AccountHomeMenu' with "Test"
     And clicked 'Add' button on 'AccountHomeMenu'
     Given  clicked "Test" button on 'AccountHomeMenu'
