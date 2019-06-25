@@ -1,7 +1,7 @@
 Feature: Trasnfer Between Accounts
 
   Background:
-    Given The 'AccountHomeMenu' is loaded
+    Given 'AccountHomeMenu' page is loaded
     Given filled 'Account name' field on 'AccountHomeMenu' with "Test"
       And clicked 'Add' button on 'AccountHomeMenu'
     Given filled 'Account name' field on 'AccountHomeMenu' with "Destination"

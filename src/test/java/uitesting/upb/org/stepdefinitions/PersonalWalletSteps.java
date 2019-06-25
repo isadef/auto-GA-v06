@@ -2,6 +2,7 @@ package uitesting.upb.org.stepdefinitions;
 
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -99,7 +100,7 @@ public class PersonalWalletSteps {
         String errorMessageFromReportsPage = reportsPage.getErrorMessage();
         Assert.assertEquals(errorMessage, errorMessageFromReportsPage);
     }
-    @Given("^The 'AccountHomeMenu' is loaded$")
+    @Given("^'AccountHomeMenu' page is loaded$")
     public void mainPageIsLoaded() {
         accountHomeMenu = LoadPage.loadHomeMenu();
     }
@@ -577,5 +578,10 @@ public class PersonalWalletSteps {
     @And("^'Change name' button is visible$")
     public void changeNameButtonIsVisible() {
         Assert.assertTrue(accountSettingsPage.changeNameButtonIsVisible());
+    }
+    @After
+    public void clearLocalStorage () {
+        System.out.println("Deleting storage");
+        DriverManager.getInstance().clearLocalStorge();
     }
 }
