@@ -499,6 +499,24 @@ public class PersonalWalletSteps {
         accountEnumCase(EnumValue);
     }
 
+    @Then("^all elements should be visible on 'Transfer' page$")
+    public void allElementsShouldBeVisibleOnTransferPage() {
+        if (transferPage.isTransferTitleVisible()){
+            System.out.println("Transfer Title is Visible : PASS");
+        }
+        else{
+            System.out.println("Transfer Title is Visible : FAILED");
+        }
+
+        if (transferPage.isTransferButtonVisible()){
+            System.out.println("Transfer Button is Visible : PASS");
+        }
+        else{
+            System.out.println("Transfer Button is Visible : FAILED");
+        }
+
+    }
+
     public enum  AccountDestinationEnum {
         Destination,
         Savings,
