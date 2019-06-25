@@ -2,6 +2,7 @@ package uitesting.upb.org.manageevents;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 
 public class Events {
+
     public static void click(WebElement webElement){
         DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
     }
@@ -82,6 +84,21 @@ public class Events {
 
     public static String getText(WebElement webElement) {
         return DriverManager.getInstance().wait.until(ExpectedConditions.visibilityOf(webElement)).getText();
+    }
+
+    public static boolean isWebElementPresent(String id, String ElementName) {
+
+        boolean present;
+        if (DriverManager.getInstance().getWebDriver().findElements(By.id(id)).size() != 0){
+            present = true;
+            System.out.println(ElementName + " element exists: PASS");
+        }
+        else {
+            present = false;
+            System.out.println(ElementName + " element exists: FAILED");
+        }
+
+        return present;
     }
 
 

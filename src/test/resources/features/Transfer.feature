@@ -214,6 +214,12 @@ Feature: Trasnfer Between Accounts
                 | Destination |    50    |
               Then search 'Success Message' alert on 'Transfer' page
 
-        Scenario: Check all basic elements are visible on 'Transfer' page
-          Given clicked 'Transfer' Button on 'MainMenu' page
-          Then all elements should be visible on 'Transfer' page
+              #Primer Metodo para verificar el UI con un solo Gherkin
+            Scenario: Check all basic elements are visible on 'Transfer' page
+              Given clicked 'Transfer' Button on 'MainMenu' page
+              Then all elements should be visible on 'Transfer' page
+
+              #Primer Metodo para verificar el UI con un solo Gherkin
+            Scenario: Check all basic elements are visible on 'Transfer' page Second Methdo
+              Given clicked 'Transfer' Button on 'MainMenu' page
+              Then all elements should be visible on 'Transfer' page Second Method

@@ -1,5 +1,6 @@
 package uitesting.upb.org.managepage.personalwallet;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import uitesting.upb.org.manageevents.Events;
@@ -21,7 +22,6 @@ public class TransferPage extends BasePage {
     protected WebElement transferTitle;
     @FindBy(id = "budgetAvailable")
     protected WebElement budgetFieldDisplay;
-
 
 
     public  TransferPage fillAmountTransferTextField(String amount) {
@@ -48,8 +48,16 @@ public class TransferPage extends BasePage {
 
     public boolean isTransferTitleVisible(){return Events.isWebElementVisible(transferTitle);}
 
+    public boolean isTransferTitlePresent(){return Events.isWebElementPresent("app", "Transfer Title");}
 
     public boolean isTransferButtonVisible() {return Events.isWebElementVisible(transferButton);}
 
+    public boolean isTransferButtonPresent() {return Events.isWebElementPresent("btn-transfer", "Transfer Button");}
+
     public boolean isBudgetAvailableFieldVisible() {return Events.isWebElementVisible(budgetFieldDisplay);}
+
+    public boolean isTransferDestinationAccountSelectorPresent() {return Events.isWebElementPresent("destinationAccount","Destination Account Selector");}
+
+    public boolean isTransferAmountBSfieldPresent() {return Events.isWebElementPresent("amount","Amount BS Field");}
+
 }

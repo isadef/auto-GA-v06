@@ -6,7 +6,9 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
@@ -25,6 +27,8 @@ public class PersonalWalletSteps {
     private TransferPage transferPage;
     private IncomePage incomePage;
     private AccountSettingsPage accountSettingsPage;
+    private SoftAssert sa = new SoftAssert();
+
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
@@ -501,20 +505,22 @@ public class PersonalWalletSteps {
 
     @Then("^all elements should be visible on 'Transfer' page$")
     public void allElementsShouldBeVisibleOnTransferPage() {
-        if (transferPage.isTransferTitleVisible()){
-            System.out.println("Transfer Title is Visible : PASS");
-        }
-        else{
-            System.out.println("Transfer Title is Visible : FAILED");
-        }
 
-        if (transferPage.isTransferButtonVisible()){
-            System.out.println("Transfer Button is Visible : PASS");
-        }
-        else{
-            System.out.println("Transfer Button is Visible : FAILED");
-        }
+        transferPage.isTransferTitlePresent();
+        transferPage.isTransferButtonPresent();
+        transferPage.isTransferAmountBSfieldPresent();
+        transferPage.isTransferDestinationAccountSelectorPresent();
+    }
 
+    @Then("^all elements should be visible on 'Transfer' page Second Method$")
+    public void allElementsShouldBeVisibleOnTransferPageSecondMethod() {
+
+        sa.assertTrue(transferPage.isTransferTitleVisible());
+
+        sa.assertTrue(transferPage.isTransferTitlePresent());
+        sa.assertTrue(transferPage.isTransferButtonPresent());
+        sa.assertTrue(transferPage.isTransferDestinationAccountSelectorPresent());
+        sa.assertTrue(transferPage.isTransferAmountBSfieldPresent());
     }
 
     public enum  AccountDestinationEnum {
