@@ -102,7 +102,7 @@ Feature: Manage Income
     And fill 'Select transaction Name' with "Test" field on 'Income page'
     And fill 'New name' field with "Test" on 'Income page'
     And fill 'New category' selector with "Others" on 'Income page'
-    And fill 'New amount' field  with "100" on 'Income page'
+    And fill 'New amount' field with "100" on 'Income page'
     And fill 'New Date' field with "10/10/2019" on 'Income page'
     And click 'Register Changes' button
     Then Search 'changeFail' alert on 'Income page'

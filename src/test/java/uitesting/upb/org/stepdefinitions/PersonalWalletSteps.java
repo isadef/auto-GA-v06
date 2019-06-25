@@ -1,13 +1,13 @@
 package uitesting.upb.org.stepdefinitions;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.personalwallet.*;
 import uitesting.upb.org.managepage.personalwallet.Transactions.ExpensesPage;
@@ -157,7 +157,7 @@ public class PersonalWalletSteps {
     }
 
     @And("^fill 'category name' field with \"([^\"]*)\" on 'Expenses page'$")
-    public void fillTheCategoryNameFieldWithOnExpensesPage(String name) throws Throwable {
+    public void fillTheCategoryNameFieldWithOnExpensesPage(String name) {
         expensesPage = (ExpensesPage) expensesPage.fillCategoryRegisterField(name);
     }
 
@@ -237,7 +237,7 @@ public class PersonalWalletSteps {
     }
 
     @And("^select \"([^\"]*)\" value on 'Destination Account' selector on 'Transfer' Page$")
-    public void selectTheValueOnDestinationAccountSelectorOnTransferPage(String accountDestination) throws Throwable {
+    public void selectTheValueOnDestinationAccountSelectorOnTransferPage(String accountDestination) {
         transferPage = transferPage.selectAccountDestination(accountDestination);
     }
 
@@ -392,7 +392,7 @@ public class PersonalWalletSteps {
         incomePage = (IncomePage) incomePage.fillNewCategoryField(newCategory);
     }
 
-    @And("^fill 'New amount' field  with \"([^\"]*)\" on 'Income page'$")
+    @And("^fill 'New amount' field with \"([^\"]*)\" on 'Income page'$")
     public void fillNewAmountFieldWithOnIncomePage(String newAmount) {
         incomePage = (IncomePage) incomePage.fillNewAmountField(newAmount);
     }
@@ -444,20 +444,20 @@ public class PersonalWalletSteps {
 
     @And("^select category \"([^\"]*)\" in 'new category' on 'expenses page'$")
     public void selectCategoryInNewCaegoryOnExpensesPage(String category) {
-        if (category != ""){
-            expensesPage = (ExpensesPage) expensesPage.selectNewCategory(category);
+        if (!category.equals("")){
+            expensesPage = (ExpensesPage) expensesPage.fillNewCategoryField(category);
         }
     }
 
 
     @And("^fill 'new date' field with \"([^\"]*)\" on 'expense page'$")
-    public void fillNewDateFieldWithOnExpensePage(String date) throws Throwable {
+    public void fillNewDateFieldWithOnExpensePage(String date) {
         expensesPage = (ExpensesPage)expensesPage.fillNewDateField(date);
     }
 
 
     @And("^fill 'new amount' with \"([^\"]*)\" on 'expense page'$")
-    public void fillNewAmountWithOnExpensePage(String arg0) throws Throwable {
+    public void fillNewAmountWithOnExpensePage(String arg0) {
         expensesPage = (ExpensesPage)expensesPage.fillNewAmountField(arg0);
     }
 
@@ -473,8 +473,8 @@ public class PersonalWalletSteps {
     }
 
     @Then("^Select 'name' \"([^\"]*)\" on 'Expenses Page'$")
-    public void selectNameOnExpensesPage(String name) throws Throwable {
-        if (name != "") {
+    public void selectNameOnExpensesPage(String name) {
+        if (!name.equals("")) {
             expensesPage = (ExpensesPage) expensesPage.selectTransactionName(name);
         }
     }
@@ -492,13 +492,13 @@ public class PersonalWalletSteps {
 
     @Then("^'Account settings' link does not exist on 'header' page$")
     public void accountSettingsLinkDoesNotExistOnHeaderPage() {
-        Assert.assertEquals(false, header.isAccountSettingsPresent());
+        Assert.assertFalse(header.isAccountSettingsPresent());
     }
 
     @Then("^The accounts \"([^\"]*)\" should exist on 'home menu' page$")
     public void theAccountsListOfAccountsExistOnHomeMenuPage(List<String> accountNames) {
         for (String accountName : accountNames) {
-            Assert.assertEquals(true, accountHomeMenu.isAccountButtonVisible(accountName));
+            Assert.assertTrue(accountHomeMenu.isAccountButtonVisible(accountName));
         }
     }
 
@@ -583,5 +583,40 @@ public class PersonalWalletSteps {
     public void clearLocalStorage () {
         System.out.println("Deleting storage");
         DriverManager.getInstance().clearLocalStorge();
+    }
+
+    @Then("^'Register Exepenses' elements should be properly displayed$")
+    public void registerExepensesElementsShouldBeProperlyDisplayed() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(expensesPage.isRegisterTransactionTitleVisible(), "Register Expenses title is not visible");
+        softAssert.assertEquals(expensesPage.getRegisterTransactionTitleText(), "Expenses", "Register Expenses title doesn't match");
+        softAssert.assertTrue(expensesPage.isRegisterNameFieldVisible(), "Register Expenses name field is not visible");
+        softAssert.assertTrue(expensesPage.isRegisterCategorySelectorVisible(), "Register Expenses category selector is not visible");
+        softAssert.assertTrue(expensesPage.isRegisterAmountFieldVisible(), "Register Expenses amount field is not visible");
+        softAssert.assertTrue(expensesPage.isRegisterDateFieldVisible(), "Register Expenses date field is not visible");
+        softAssert.assertAll();
+    }
+
+    @Then("^'Register Exepense Category' elements should be properly displayed$")
+    public void registerExepenseCategoryElementsShouldBeProperlyDisplayed() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(expensesPage.isRegisterCategoryTitleVisible(), "Register Category title is not visible");
+        softAssert.assertEquals(expensesPage.getRegisterCategoryTitle(), "Register Category", "Register category title doesn't match");
+        softAssert.assertTrue(expensesPage.isCategoryRegisterFieldVisible(), "Category Register name field is not visible");
+        softAssert.assertTrue(expensesPage.isCategoryRegisterButtonVisible(), "Category register button is not visible");
+        softAssert.assertAll();
+    }
+
+    @Then("^'Modify Exepenses' elements should be properly displayed$")
+    public void modifyExepensesElementsShouldBeProperlyDisplayed() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(expensesPage.isModifyTransactionTitleVisible(), "Modify Expenses title is not visible");
+        softAssert.assertEquals(expensesPage.getModifyTransactionTitle(), "Modify Expenses", "Modify Expenses title does not match");
+        softAssert.assertTrue(expensesPage.isModifyOldNameSelectorVisible(), "Modify Expenses name selector is not visible");
+        softAssert.assertTrue(expensesPage.isModifyNewNameFieldVisible(), "Modify Expenses new name field is not visible");
+        softAssert.assertTrue(expensesPage.isModifyNewDateFieldVIsible(), "Modify Expenses new Date Field is not visible");
+        softAssert.assertTrue(expensesPage.isModifyNewCategorySelectorVisible(), "Modify Expenses new Category selector is not visible");
+        softAssert.assertTrue(expensesPage.isModifyNewAmountFieldVisible(), "Modify Expenses new amount field is not visible");
+        softAssert.assertAll();
     }
 }
