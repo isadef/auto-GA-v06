@@ -8,6 +8,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.manageParameters.EnumValues;
 import uitesting.upb.org.manageParameters.MapQuantity;
@@ -35,6 +36,7 @@ public class PersonalWalletSteps {
     private CalzadoPage calzadoPage;
     private CarritoPage carritoPage;
     private String text;
+    SoftAssert sa= new SoftAssert();
 
     @Given("^Fill account name field on 'home menu' page with \"(.*)\"$")
     public void fillAccountNameField(String accountName) {
@@ -493,8 +495,9 @@ public class PersonalWalletSteps {
     public void searchCantidadTextWithOnCalzadoPage(String text) {
         this.text = text;
         MapQuantity quantity = new MapQuantity();
-        Assert.assertEquals(calzadoPage.getText(), quantity.getQuantity("CALZADO DE FÚTBOL NEMEZIZ 19.3 TERRENO FIRME"));
-
+        //Assert.assertEquals(calzadoPage.getText(), quantity.getQuantity("CALZADO DE FÚTBOL NEMEZIZ 19.3 TERRENO FIRME"));
+        sa.assertEquals(calzadoPage.getText(), quantity.getQuantity("CALZADO DE FÚTBOL NEMEZIZ 19.3 TERRENO FIRME"));
+       // System.out.println("\nAssertion Failed quantity");
 
     }
 
@@ -512,7 +515,9 @@ public class PersonalWalletSteps {
     @And("^'titlefield' with \"([^\"]*)\" is displayed on 'carritopage'$")
     public void titlefieldWithIsDisplayedOnCarritopage(String title) {
 
-        Assert.assertEquals(carritoPage.getTitleText(), EnumValues.getFullName(title));
+        //Assert.assertEquals(carritoPage.getTitleText(), EnumValues.getFullName(title));
+        sa.assertEquals(carritoPage.getTitleText(), EnumValues.getFullName(title));
+       // System.out.println("\nAssertion Failed tittle");
     }
 
     @And("^'totalproductofield' is displayed with \"([^\"]*)\" on 'carritopage'$")
@@ -528,13 +533,23 @@ public class PersonalWalletSteps {
     @And("^'totalproductofield' and 'totalfield' is displayes with \"([^\"]*)\"$")
     public void totalproductofieldAndTotalfieldIsDisplayesWith(String list)   {
        String [] listaPrecios = list.split(";");
-        Assert.assertEquals(carritoPage.getTotalProductFieldText(),listaPrecios[0]);
-        Assert.assertEquals(carritoPage.getTotalFieldText(),listaPrecios[1]);
+        //Assert.assertEquals(carritoPage.getTotalProductFieldText(),listaPrecios[0]);
+        //Assert.assertEquals(carritoPage.getTotalFieldText(),listaPrecios[1]);
+
+        sa.assertEquals(carritoPage.getTotalProductFieldText(),listaPrecios[0]);
+       // System.out.println("\nAssertion Failed precio 1");
+        sa.assertEquals(carritoPage.getTotalFieldText(),listaPrecios[1]);
+        //System.out.println("Assertion Failed precio 2");
 
 
     }
 
     @And("^search 'cantidad' text with <calzadoQuantity> on 'calzado page'$")
     public void searchCantidadTextWithCalzadoQuantityOnCalzadoPage() {
+    }
+
+    @And("^all assertion correct$")
+    public void allAssertionCorrect() {
+        sa.assertAll();
     }
 }
