@@ -514,9 +514,6 @@ public class PersonalWalletSteps {
 
     @Then("^all elements should be visible on 'Transfer' page Second Method$")
     public void allElementsShouldBeVisibleOnTransferPageSecondMethod() {
-
-        sa.assertTrue(transferPage.isTransferTitleVisible());
-
         sa.assertTrue(transferPage.isTransferTitlePresent());
         sa.assertTrue(transferPage.isTransferButtonPresent());
         sa.assertTrue(transferPage.isTransferDestinationAccountSelectorPresent());
