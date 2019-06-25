@@ -9,7 +9,7 @@ import uitesting.upb.org.managepage.BasePage;
 public class TransferPage extends BasePage {
     @FindBy(id = "amount")
     protected WebElement amountTransferTextField;
-    @FindBy(id = "btn-transfe")
+    @FindBy(id = "btn-transfer")
     protected WebElement transferButton;
     @FindBy(id = "msg-error")
     protected WebElement transferErrorMessage;
