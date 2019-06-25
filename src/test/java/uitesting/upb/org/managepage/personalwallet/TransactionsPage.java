@@ -1,10 +1,13 @@
 package uitesting.upb.org.managepage.personalwallet;
 
+import cucumber.api.java.gl.E;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import uitesting.upb.org.manageevents.Events;
 import uitesting.upb.org.managepage.BasePage;
+
+import java.awt.*;
 
 public class TransactionsPage extends BasePage {
     @FindBy(id = "categoryRegister")
@@ -75,9 +78,81 @@ public class TransactionsPage extends BasePage {
     @FindBy (id = "old-name")
     private WebElement transactionNameSelector;
 
-    public TransactionsPage selectNewCategory(String option) {
-        Events.selectOptionInSelectElementByVisibleText(new Select(newCategoryField), option);
-        return this;
+    @FindBy (xpath = "//*[@class=\"card p-5 mt-3\"]/h2[not(contains(.,\"Modify\"))]")
+    private WebElement registerTransactionTitle;
+
+    @FindBy(xpath = "//*[@class=\"card p-5 mt-3\"]/h2[contains(.,\"Modify\")]")
+    private WebElement modifyTransactionTitle;
+
+    @FindBy (xpath = "//*[@class=\"card card-category p-5 mt-3\"]/h2[contains(.,\"Register Category\")]")
+    private WebElement registerCategoryTitle;
+
+    public boolean isModifyOldNameSelectorVisible () {
+        return Events.isWebElementVisible(oldNameField);
+    }
+
+    public boolean isModifyNewNameFieldVisible () {
+        return Events.isWebElementVisible(newNameField);
+    }
+
+    public boolean isModifyNewCategorySelectorVisible () {
+        return Events.isWebElementVisible(newCategoryField);
+    }
+
+    public boolean isModifyNewDateFieldVIsible () {
+        return Events.isWebElementVisible(newDateField);
+    }
+
+    public boolean isModifyNewAmountFieldVisible () {
+        return Events.isWebElementVisible(newAmountField);
+    }
+
+    public boolean isRegisterCategoryTitleVisible () {
+        return  Events.isWebElementVisible(registerCategoryTitle);
+    }
+
+    public boolean isCategoryRegisterFieldVisible () {
+        return Events.isWebElementVisible(categoryRegisterField);
+    }
+
+    public boolean isCategoryRegisterButtonVisible () {
+        return Events.isWebElementVisible(catergoryButton);
+    }
+
+    public boolean isRegisterNameFieldVisible() {
+        return Events.isWebElementVisible(transactionNameField);
+    }
+
+    public boolean isRegisterCategorySelectorVisible () {
+        return Events.isWebElementVisible(categorySelector);
+    }
+
+    public boolean isRegisterAmountFieldVisible () {
+        return Events.isWebElementVisible(amountField);
+    }
+
+    public boolean isRegisterDateFieldVisible () {
+        return Events.isWebElementVisible(dateField);
+    }
+
+    public String getRegisterCategoryTitle () {
+        return Events.getText(registerCategoryTitle);
+    }
+
+    public String getModifyTransactionTitle () {
+        return Events.getText(modifyTransactionTitle);
+    }
+
+    public boolean isModifyTransactionTitleVisible () {
+        return Events.isWebElementVisible(modifyTransactionTitle);
+    }
+
+    public boolean isRegisterTransactionTitleVisible () {
+        return Events.isWebElementVisible(registerTransactionTitle);
+    }
+
+    public String getRegisterTransactionTitleText () {
+        return Events.getText(registerTransactionTitle);
     }
 
     public TransactionsPage selectTransactionName (String option) {

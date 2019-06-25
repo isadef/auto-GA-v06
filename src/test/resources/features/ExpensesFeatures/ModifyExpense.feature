@@ -22,6 +22,10 @@ Feature: Modify Expense Feature
     Then Search 'transaction success' alert on 'Expenses' page
     And click 'PersonalWallet' button on 'Header' page
 
+    Scenario: 'Modify Expenses' elements are properly displayed
+      Given click 'Expenses' button on 'MainMenu' page
+      Then 'Modify Exepenses' elements should be properly displayed
+
   Scenario: Change a transaction
     Given click 'Expenses' button on 'MainMenu' page
     Then Select 'name' "Prueba" on 'Expenses Page'

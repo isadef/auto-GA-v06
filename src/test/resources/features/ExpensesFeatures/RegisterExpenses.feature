@@ -1,4 +1,5 @@
 Feature: Register expenses
+
   Background:
     Given 'AccountHomeMenu' page is loaded
     Given filled 'Account name' field on 'AccountHomeMenu' with "Test"
@@ -13,6 +14,9 @@ Feature: Register expenses
     Then Search 'transaction success' alert on 'Income Page'
     And click 'PersonalWallet' button on 'Header' page
 
+  Scenario: 'Register Expenses' elements are properly displayed
+    Given click 'Expenses' button on 'MainMenu' page
+    Then 'Register Exepenses' elements should be properly displayed
 
   Scenario Outline: Register empty expenses
     Given click 'Expenses' button on 'MainMenu' page
@@ -23,43 +27,43 @@ Feature: Register expenses
     And click 'Register Transaction' button on 'Expenses Page'
     Then Search 'transaction fail' alert on 'Expenses Page'
     And click 'PersonalWallet' button on 'Header' page
-    Examples: 
-    |Name    |Category|Amount   |Date        |
-    |        |Others  |1        |05/23/2019  |
-    |Prueba  |        |1        |05/23/2019  |
-    |Prueba  |Others  |         |05/23/2019  |
-    |Prueba  |Others  |1        |            |
+    Examples:
+      | Name   | Category | Amount | Date       |
+      |        | Others   | 1      | 05/23/2019 |
+      | Prueba |          | 1      | 05/23/2019 |
+      | Prueba | Others   |        | 05/23/2019 |
+      | Prueba | Others   | 1      |            |
 
-    Scenario: Register Expense
-      Given click 'Expenses' button on 'MainMenu' page
-      And fill 'expense name' field with "Prueba" on 'Expenses Page'
-      And select "Others" values on 'category' selector on 'Expenses Page'
-      And fill 'AmountBS' field with "1" on 'Expenses Page'
-      And fill 'Date of the Transaction' field with "05/23/2019" on 'Expenses Page'
-      And click 'Register Transaction' button on 'Expenses Page'
-      Then Search 'transaction success' alert on 'Expenses' page
-      And click 'PersonalWallet' button on 'Header' page
+  Scenario: Register Expense
+    Given click 'Expenses' button on 'MainMenu' page
+    And fill 'expense name' field with "Prueba" on 'Expenses Page'
+    And select "Others" values on 'category' selector on 'Expenses Page'
+    And fill 'AmountBS' field with "1" on 'Expenses Page'
+    And fill 'Date of the Transaction' field with "05/23/2019" on 'Expenses Page'
+    And click 'Register Transaction' button on 'Expenses Page'
+    Then Search 'transaction success' alert on 'Expenses' page
+    And click 'PersonalWallet' button on 'Header' page
 
-    Scenario Outline: Register expense with incorrect data
-      Given click 'Expenses' button on 'MainMenu' page
-      And fill 'expense name' field with "Prueba" on 'Expenses Page'
-      And select "Others" values on 'category' selector on 'Expenses Page'
-      And fill 'AmountBS' field with "1" on 'Expenses Page'
-      And fill 'Date of the Transaction' field with "05/23/2019" on 'Expenses Page'
-      And click 'Register Transaction' button on 'Expenses Page'
-      Then Search 'transaction success' alert on 'Expenses' page
-      And click 'PersonalWallet' button on 'Header' page
-      And click 'Expenses' button on 'MainMenu' page
-      Then fill 'expense name' field with "<Name>" on 'Expenses Page'
-      And select "<Category>" values on 'category' selector on 'Expenses Page'
-      And fill 'AmountBS' field with "<Amount>" on 'Expenses Page'
-      And fill 'Date of the Transaction' field with "<Date>" on 'Expenses Page'
-      And click 'Register Transaction' button on 'Expenses Page'
-      Then Search 'transaction fail' alert on 'Expenses Page'
-      And click 'PersonalWallet' button on 'Header' page
-      Examples:
-        |Name    |Category|Amount   |Date        |
-        |Prueba  |Others  |1        |05/23/2019  |
-        |Prueba1 |Others  |0        |05/23/2019  |
-        |Prueba1 |Others  |-10      |05/23/2019  |
-        |Prueba1 |Others  |100000   |05/23/2019  |
+  Scenario Outline: Register expense with incorrect data
+    Given click 'Expenses' button on 'MainMenu' page
+    And fill 'expense name' field with "Prueba" on 'Expenses Page'
+    And select "Others" values on 'category' selector on 'Expenses Page'
+    And fill 'AmountBS' field with "1" on 'Expenses Page'
+    And fill 'Date of the Transaction' field with "05/23/2019" on 'Expenses Page'
+    And click 'Register Transaction' button on 'Expenses Page'
+    Then Search 'transaction success' alert on 'Expenses' page
+    And click 'PersonalWallet' button on 'Header' page
+    And click 'Expenses' button on 'MainMenu' page
+    Then fill 'expense name' field with "<Name>" on 'Expenses Page'
+    And select "<Category>" values on 'category' selector on 'Expenses Page'
+    And fill 'AmountBS' field with "<Amount>" on 'Expenses Page'
+    And fill 'Date of the Transaction' field with "<Date>" on 'Expenses Page'
+    And click 'Register Transaction' button on 'Expenses Page'
+    Then Search 'transaction fail' alert on 'Expenses Page'
+    And click 'PersonalWallet' button on 'Header' page
+    Examples:
+      | Name    | Category | Amount | Date       |
+      | Prueba  | Others   | 1      | 05/23/2019 |
+      | Prueba1 | Others   | 0      | 05/23/2019 |
+      | Prueba1 | Others   | -10    | 05/23/2019 |
+      | Prueba1 | Others   | 100000 | 05/23/2019 |

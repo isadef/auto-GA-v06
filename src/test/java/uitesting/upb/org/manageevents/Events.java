@@ -22,20 +22,9 @@ public class Events {
         DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(by)).click();
     }
 
-    public static void clearArrayOfElements(WebElement [] webElements) {
-        for (WebElement webElement: webElements){
-            DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(webElement)).clear();
-        }
-    }
-
     public static void clearElement(WebElement element) {
         DriverManager.getInstance().wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         element.clear();
-        element.sendKeys(Keys.DELETE);
-    }
-
-    public static void clearSelector (Select select) {
-        select.selectByIndex(0);
     }
 
     public static void fillField(WebElement searchTextField, String text) {
