@@ -552,4 +552,13 @@ public class PersonalWalletSteps {
     public void allAssertionCorrect() {
         sa.assertAll();
     }
+
+    @Given("^'titlefield' with \"([^\"]*)\"  'totalproductofield' and 'totalfield' is displayes with \"([^\"]*)\" are  displayed on 'carritopage'$")
+    public void titlefieldWithTotalproductofieldAndTotalfieldIsDisplayesWithAreDisplayedOnCarritopage(String title, String list) {
+        String [] listaPrecios = list.split(";");
+        sa.assertEquals(carritoPage.getTitleText(), EnumValues.getFullName(title));
+        sa.assertEquals(carritoPage.getTotalProductFieldText(),listaPrecios[0]);
+        sa.assertEquals(carritoPage.getTotalFieldText(),listaPrecios[1]);
+        sa.assertAll();
+    }
 }
