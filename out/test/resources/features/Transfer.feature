@@ -15,7 +15,7 @@ Feature: Trasnfer Between Accounts
     And click 'Transfer' Button on 'Transfer' page
     Then Search 'Error Message' fail alert on 'Transfer' page
 
-  Scenario: Error Message is displayed when No Category is Selected to Transfer
+  Scenario: Error Message is displayed when No Category is Selected when registering Transfer
     Given click 'Income' button on 'MainMenu' page
       And fill 'income name' field with "Prueba income 1" on 'Income Page'
       And select "Others" values on 'category' selector on 'Income Page'
@@ -29,7 +29,7 @@ Feature: Trasnfer Between Accounts
     And click 'Transfer' Button on 'Transfer' page
     Then Search 'Error Message' fail alert on 'Transfer' page
 
-  Scenario: Error Message is displayed when No Ammount is filled in text field on 'Transfer' page
+  Scenario: Error Message is displayed when No Ammount is filled in field when registering transfer on 'Transfer' page
     Given click 'Income' button on 'MainMenu' page
       And  fill 'income name' field with "Prueba income 1" on 'Income Page'
       And select "Others" values on 'category' selector on 'Income Page'
@@ -126,5 +126,6 @@ Feature: Trasnfer Between Accounts
         And filled 'amount in BS' text field with "10000000" on 'Transfer' page
         And click 'Transfer' Button on 'Transfer' page
         Then Search 'Error Message' fail alert on 'Transfer' page
+
 
 
