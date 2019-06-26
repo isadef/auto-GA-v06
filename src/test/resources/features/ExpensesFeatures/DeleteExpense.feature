@@ -1,4 +1,5 @@
 Feature: Delete Exepense
+
   Background:
     Given 'AccountHomeMenu' page is loaded
     Given Fill account name field on 'home menu' page with "Test"
@@ -21,11 +22,19 @@ Feature: Delete Exepense
     Then Search 'transaction success' alert on 'Expenses' page
     And click 'PersonalWallet' button on 'Header' page
 
-    Scenario: Delete expense
-      When Click 'Reports' button on 'main menu' page
-      Then The title is "Reports for: Test"
-      When Select 'By category' in 'Select report type' selector on 'reports' page
-      And Click 'Show report' button on 'reports' page
-      And "Prueba expense" row is visible on 'Reports' page
-      Then Click on 'x' button in row "Prueba expense" on 'Reports' page
-      And "Prueba expense" row is not visible on 'Reports' page
+  Scenario: Delete expense
+    When Click 'Reports' button on 'main menu' page
+    Then The title is "Reports for: Test"
+    When Select 'By category' in 'Select report type' selector on 'reports' page
+    And Click 'Show report' button on 'reports' page
+    And "Prueba expense" row is visible on 'Reports' page
+    Then Click on 'x' button in row "Prueba expense" on 'Reports' page
+    And "Prueba expense" row is not visible on 'Reports' page
+
+  Scenario: 'x' button is visible in an 'expense' row on 'reports' page
+    When Click 'Reports' button on 'main menu' page
+    Then The title is "Reports for: Test"
+    When Select 'By category' in 'Select report type' selector on 'reports' page
+    And Click 'Show report' button on 'reports' page
+    And "Prueba expense" row is visible on 'Reports' page
+    Then 'x' button should be visible in "Prueba expense" row on 'Reports' page

@@ -96,10 +96,11 @@ public class PersonalWalletSteps {
     }
 
     @Then("^\"([^\"]*)\" error shows up on 'reports' page$")
-    public void errorShowsUpOnReportsPage(String errorMessage){
+    public void errorShowsUpOnReportsPage(String errorMessage) {
         String errorMessageFromReportsPage = reportsPage.getErrorMessage();
         Assert.assertEquals(errorMessage, errorMessageFromReportsPage);
     }
+
     @Given("^'AccountHomeMenu' page is loaded$")
     public void mainPageIsLoaded() {
         accountHomeMenu = LoadPage.loadHomeMenu();
@@ -247,7 +248,7 @@ public class PersonalWalletSteps {
     }
 
     @And("^fill 'category name' field with \"([^\"]*)\" on 'Income page'$")
-    public void fillCategoryNameFieldWithOnIncomePage(String name)   {
+    public void fillCategoryNameFieldWithOnIncomePage(String name) {
         incomePage = (IncomePage) incomePage.fillCategoryRegisterField(name);
     }
 
@@ -262,12 +263,12 @@ public class PersonalWalletSteps {
     }
 
     @And("^Search \"([^\"]*)\" on 'category' selector on 'Income page'$")
-    public void searchOnCategorySelectorOnIncomePage(String category)  {
+    public void searchOnCategorySelectorOnIncomePage(String category) {
         Assert.assertTrue(incomePage.searchCategoryOnSelector(category));
     }
 
     @And("^fill 'income name' field with \"([^\"]*)\" on 'Income Page'$")
-    public void fillIncomeNameFieldWithOnIncomePage(String name)  {
+    public void fillIncomeNameFieldWithOnIncomePage(String name) {
         incomePage = (IncomePage) incomePage.fillTransactionNameField(name);
     }
 
@@ -277,7 +278,7 @@ public class PersonalWalletSteps {
     }
 
     @And("^fill 'AmountBS' field with \"([^\"]*)\" on 'Income Page'$")
-    public void fillAmountBSFieldWithOnIncomePage(String amount){
+    public void fillAmountBSFieldWithOnIncomePage(String amount) {
         incomePage = (IncomePage) incomePage.fillAmountField(amount);
 
     }
@@ -331,6 +332,7 @@ public class PersonalWalletSteps {
     public void checkThatBudgetAvailableInBSFieldIsVisible() {
         Assert.assertTrue(transferPage.isBudgetAvailableFieldVisible());
     }
+
     @Then("^Search 'Missing or repeat data to complete register category!' alert on 'Expenses page'$")
     public void searchMissingOrRepeatDataToCompleteRegisterCategoryAlertOnExpensesPage() {
         Assert.assertTrue(expensesPage.isCategoryFailAlertVisible(), "Missing or repeated data alert is not visible");
@@ -348,14 +350,14 @@ public class PersonalWalletSteps {
 
     @Then("^Reports table shows$")
     public void asssertReportsTable(DataTable table) {
-        List< List<String> > reportsPageTable = reportsPage.getTableAsListOfLists();
-        List< List<String> > tableAsList = table.raw();
+        List<List<String>> reportsPageTable = reportsPage.getTableAsListOfLists();
+        List<List<String>> tableAsList = table.raw();
         Assert.assertEquals(reportsPageTable, tableAsList);
     }
 
     @Then("^check the 'Total Amount' label is \"([^\"]*)\" on 'Main Menu'$")
     public void checkTheTotalAmountLabelIsOnMainMenu(String amount) {
-        Assert.assertEquals(mainMenu.getAmount(), "Total amount:\n"+amount+"\n Bs.");
+        Assert.assertEquals(mainMenu.getAmount(), "Total amount:\n" + amount + "\n Bs.");
     }
 
     @And("^click 'PersonalWallet' button on 'Header' page$")
@@ -372,6 +374,7 @@ public class PersonalWalletSteps {
     public void searchOptionIsNotOnTransactionNameSelectorOnExpensesPage(String option) {
         Assert.assertTrue(expensesPage.searchOptionOnTransactionNameSelector(option));
     }
+
     @Then("^Search 'transaction fail' alert on 'Income Page'$")
     public void searchTransactionFailAlertOnIncomePage() {
         Assert.assertTrue(incomePage.isTransactionFailAlertVisible());
@@ -427,6 +430,7 @@ public class PersonalWalletSteps {
     public void clearCategoryNameFieldOnExpensesPage() {
         expensesPage = (ExpensesPage) expensesPage.clearCategoryNameField();
     }
+
     @Then("^search 'Success Message' alert on 'Transfer' page$")
     public void searchSuccessMessageAlertOnTransferPage() {
         Assert.assertTrue(transferPage.isTransferSuccessMessageVisible());
@@ -444,7 +448,7 @@ public class PersonalWalletSteps {
 
     @And("^select category \"([^\"]*)\" in 'new category' on 'expenses page'$")
     public void selectCategoryInNewCaegoryOnExpensesPage(String category) {
-        if (!category.equals("")){
+        if (!category.equals("")) {
             expensesPage = (ExpensesPage) expensesPage.fillNewCategoryField(category);
         }
     }
@@ -452,19 +456,19 @@ public class PersonalWalletSteps {
 
     @And("^fill 'new date' field with \"([^\"]*)\" on 'expense page'$")
     public void fillNewDateFieldWithOnExpensePage(String date) {
-        expensesPage = (ExpensesPage)expensesPage.fillNewDateField(date);
+        expensesPage = (ExpensesPage) expensesPage.fillNewDateField(date);
     }
 
 
     @And("^fill 'new amount' with \"([^\"]*)\" on 'expense page'$")
     public void fillNewAmountWithOnExpensePage(String arg0) {
-        expensesPage = (ExpensesPage)expensesPage.fillNewAmountField(arg0);
+        expensesPage = (ExpensesPage) expensesPage.fillNewAmountField(arg0);
     }
 
 
     @And("^click 'Register Changes' button' on 'Expense' page$")
     public void clickRegisterChangesButtonOnExpensePage() {
-        expensesPage = (ExpensesPage)expensesPage.clickRegisterChangesButton();
+        expensesPage = (ExpensesPage) expensesPage.clickRegisterChangesButton();
     }
 
     @Then("^Search 'changeFail' alert on 'Expenses page'$")
@@ -522,7 +526,7 @@ public class PersonalWalletSteps {
 
     @Given("^Register the following incomes on 'income' page$")
     public void registerTheFollowingIncomesOnIncomePage(List<Map<String, String>> incomes) {
-        for (Map<String, String> income: incomes) {
+        for (Map<String, String> income : incomes) {
             incomePage = (IncomePage) incomePage.fillTransactionNameField(income.get("Name"));
             incomePage = (IncomePage) incomePage.selectCategory(income.get("Category"));
             incomePage = (IncomePage) incomePage.fillAmountField(income.get("Amount"));
@@ -565,6 +569,7 @@ public class PersonalWalletSteps {
     public void newAmountFieldShouldBeEmptyOnExpensesPage() {
         Assert.assertEquals("", expensesPage.getNewAmountFieldText());
     }
+
     @And("^Change 'Account name' field on 'AccountSettings' to \"([^\"]*)\"$")
     public void changeAccountNameFieldOnAccountSettingsTo(String arg0) {
         accountSettingsPage.setNewAccountName(arg0);
@@ -579,8 +584,9 @@ public class PersonalWalletSteps {
     public void changeNameButtonIsVisible() {
         Assert.assertTrue(accountSettingsPage.changeNameButtonIsVisible());
     }
+
     @After
-    public void clearLocalStorage () {
+    public void clearLocalStorage() {
         System.out.println("Deleting storage");
         DriverManager.getInstance().clearLocalStorge();
     }
@@ -620,5 +626,10 @@ public class PersonalWalletSteps {
         softAssert.assertTrue(expensesPage.isModifyNewAmountFieldVisible(), "Modify Expenses new amount field is not visible");
         softAssert.assertTrue(expensesPage.isRegisterChangesButtonVisible(), "Register changes button is not visible");
         softAssert.assertAll();
+    }
+
+    @Then("^'x' button should be visible in \"([^\"]*)\" row on 'Reports' page$")
+    public void xButtonShouldBeVisibleInRowOnReportsPage(String row) {
+        Assert.assertTrue(reportsPage.isXButtonVisibleInRow(row));
     }
 }
