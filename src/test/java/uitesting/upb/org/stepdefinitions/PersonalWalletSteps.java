@@ -579,11 +579,11 @@ public class PersonalWalletSteps {
     public void changeNameButtonIsVisible() {
         Assert.assertTrue(accountSettingsPage.changeNameButtonIsVisible());
     }
-    @After
-    public void clearLocalStorage () {
-        System.out.println("Deleting storage");
-        DriverManager.getInstance().clearLocalStorge();
-    }
+//    @After
+//    public void clearLocalStorage () {
+//        System.out.println("Deleting storage");
+//        DriverManager.getInstance().clearLocalStorge();
+//    }
 
     @Then("^'Register Exepenses' elements should be properly displayed$")
     public void registerExepensesElementsShouldBeProperlyDisplayed() {
@@ -618,5 +618,10 @@ public class PersonalWalletSteps {
         softAssert.assertTrue(expensesPage.isModifyNewCategorySelectorVisible(), "Modify Expenses new Category selector is not visible");
         softAssert.assertTrue(expensesPage.isModifyNewAmountFieldVisible(), "Modify Expenses new amount field is not visible");
         softAssert.assertAll();
+    }
+
+    @Then("^click 'Exit' button on 'Income' page\\.$")
+    public void clickExitButtonOnIncomePage() {
+        accountHomeMenu = incomePage.clickexitButton();
     }
 }

@@ -22,8 +22,8 @@ Feature: Trasnfer Between Accounts
       And fill 'AmountBS' field with "10000" on 'Income Page'
       And fill 'DateField' field with "12/06/2019" on 'Income Page'
       And click 'Register Transaction' button on 'Income Page'
-    Then click 'Exit' button on 'Income' page
-    Given clicked "Test" button on 'AccountHomeMenu'
+    Then click 'Exit' button on 'Income' page.
+    Given  clicked "Test" button on 'AccountHomeMenu'
     Given clicked 'Transfer' Button on 'MainMenu' page
     And filled 'amount in BS' text field with "100" on 'Transfer' page
     And click 'Transfer' Button on 'Transfer' page
@@ -36,7 +36,7 @@ Feature: Trasnfer Between Accounts
     And fill 'AmountBS' field with "10000" on 'Income Page'
     And fill 'DateField' field with "12/06/2019" on 'Income Page'
     And click 'Register Transaction' button on 'Income Page'
-    Then click 'Exit' button on 'Income' page
+    Then click 'Exit' button on 'Income' page.
     Given clicked "Test" button on 'AccountHomeMenu'
     Given clicked 'Transfer' Button on 'MainMenu' page
     And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
@@ -50,7 +50,7 @@ Feature: Trasnfer Between Accounts
     And fill 'AmountBS' field with "10000" on 'Income Page'
     And fill 'DateField' field with "12/06/2019" on 'Income Page'
     And click 'Register Transaction' button on 'Income Page'
-    Then click 'Exit' button on 'Income' page
+    Then click 'Exit' button on 'Income' page.
     Given clicked "Test" button on 'AccountHomeMenu'
     Given clicked 'Transfer' Button on 'MainMenu' page
     And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
@@ -73,7 +73,7 @@ Feature: Trasnfer Between Accounts
     And fill 'AmountBS' field with "10000" on 'Income Page'
     And fill 'DateField' field with "12/06/2019" on 'Income Page'
     And click 'Register Transaction' button on 'Income Page'
-    Then click 'Exit' button on 'Income' page
+    Then click 'Exit' button on 'Income' page.
     Given clicked "Test" button on 'AccountHomeMenu'
     Given clicked 'Transfer' Button on 'MainMenu' page
     And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
@@ -89,7 +89,7 @@ Feature: Trasnfer Between Accounts
         And fill 'AmountBS' field with "10000" on 'Income Page'
         And fill 'DateField' field with "12/06/2019" on 'Income Page'
         And click 'Register Transaction' button on 'Income Page'
-        Then click 'Exit' button on 'Income' page
+        Then click 'Exit' button on 'Income' page.
         Given clicked "Test" button on 'AccountHomeMenu'
         Given clicked 'Transfer' Button on 'MainMenu' page
         And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
@@ -104,7 +104,7 @@ Feature: Trasnfer Between Accounts
         And fill 'AmountBS' field with "10000" on 'Income Page'
         And fill 'DateField' field with "12/06/2019" on 'Income Page'
         And click 'Register Transaction' button on 'Income Page'
-        Then click 'Exit' button on 'Income' page
+        Then click 'Exit' button on 'Income' page.
         Given clicked "Test" button on 'AccountHomeMenu'
         Given clicked 'Transfer' Button on 'MainMenu' page
         And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
@@ -119,7 +119,7 @@ Feature: Trasnfer Between Accounts
         And fill 'AmountBS' field with "10000" on 'Income Page'
         And fill 'DateField' field with "12/06/2019" on 'Income Page'
         And click 'Register Transaction' button on 'Income Page'
-        Then click 'Exit' button on 'Income' page
+        Then click 'Exit' button on 'Income' page.
         Given clicked "Test" button on 'AccountHomeMenu'
         Given clicked 'Transfer' Button on 'MainMenu' page
         And select "Destination" value on 'Destination Account' selector on 'Transfer' Page
