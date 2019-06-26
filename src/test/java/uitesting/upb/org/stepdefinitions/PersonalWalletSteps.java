@@ -627,7 +627,7 @@ public class PersonalWalletSteps {
     }
 
     @Then("^table on 'Report' page should show \"([^\"]*)\" transaction type on category column, second row$")
-    public void tableOnReportPageShouldShowTransactionTypeOnCategoryColumnSecondRow(String arg0) throws Throwable {
-
+    public void tableOnReportPageShouldShowTransactionTypeOnCategoryColumnSecondRow(String typeTransaction) throws Throwable {
+        Assert.assertEquals(reportsPage.getCategoryTypeText(), typeTransaction);
     }
 }
