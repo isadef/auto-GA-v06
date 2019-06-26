@@ -173,7 +173,7 @@ public class PersonalWalletSteps {
 
     @Then("^Search 'category success' alert on 'Expenses page'$")
     public void searchTheCategorySuccessAlertOnExpensesPage() {
-        Assert.assertTrue(expensesPage.isCategorySuccessAlertVisible());
+        Assert.assertTrue(expensesPage.isCategorySuccessAlertVisible(), "Category succes is not displayed on expenses page");
     }
 
     @And("^Search \"([^\"]*)\" on 'category' selector on 'Expenses page'$")
@@ -208,7 +208,7 @@ public class PersonalWalletSteps {
 
     @Then("^Search 'transaction fail' alert on 'Expenses Page'$")
     public void searchTransactionFailAlertOnExpensesPage() {
-        Assert.assertTrue(expensesPage.isTransactionFailAlertVisible());
+        Assert.assertTrue(expensesPage.isTransactionFailAlertVisible(), "Transaction fail alert is not visible");
     }
 
     @Given("^clicked 'Transfer' Button on 'MainMenu' page$")
@@ -294,7 +294,7 @@ public class PersonalWalletSteps {
 
     @Then("^Search 'transaction success' alert on 'Income Page'$")
     public void searchTransactionSuccessAlertOnIncomePage() {
-        Assert.assertTrue(incomePage.isTransactionSuccessAlertVisible());
+        Assert.assertTrue(incomePage.isTransactionSuccessAlertVisible(), "transaction success alert is not visible");
     }
 
     @And("^Click 'Account Settings' button on 'Income' page$")
@@ -333,7 +333,7 @@ public class PersonalWalletSteps {
     }
     @Then("^Search 'Missing or repeat data to complete register category!' alert on 'Expenses page'$")
     public void searchMissingOrRepeatDataToCompleteRegisterCategoryAlertOnExpensesPage() {
-        Assert.assertTrue(expensesPage.isCategoryFailAlertVisible());
+        Assert.assertTrue(expensesPage.isCategoryFailAlertVisible(), "Missing or repeated data alert is not visible");
     }
 
     @And("^Confirm that \"([^\"]*)\" is not on 'category' selector on 'Expenses page'$")
@@ -434,7 +434,7 @@ public class PersonalWalletSteps {
 
     @Then("^Search 'transaction success' alert on 'Expenses' page$")
     public void searchTransactionSuccessAlertOnExpensesPage() {
-        Assert.assertTrue(expensesPage.isTransactionSuccessAlertVisible());
+        Assert.assertTrue(expensesPage.isTransactionSuccessAlertVisible(), "transaction success alert is not visible");
     }
 
     @Then("^fill 'new name' field with \"([^\"]*)\" on 'Expenses Page'$")
@@ -469,7 +469,7 @@ public class PersonalWalletSteps {
 
     @Then("^Search 'changeFail' alert on 'Expenses page'$")
     public void searchChangeFailAlertOnExpensesPage() {
-        Assert.assertTrue(expensesPage.isChangeFailAlertVisible());
+        Assert.assertTrue(expensesPage.isChangeFailAlertVisible(), "Change fail alert is not visible");
     }
 
     @Then("^Select 'name' \"([^\"]*)\" on 'Expenses Page'$")
@@ -533,7 +533,7 @@ public class PersonalWalletSteps {
 
     @Then("^Search 'changeSuccess' alert on 'Expenses page'$")
     public void searchChangeSuccessAlertOnExpensesPage() {
-        Assert.assertTrue(expensesPage.isChangeSuccessAlertVisible());
+        Assert.assertTrue(expensesPage.isChangeSuccessAlertVisible(), "change success alert is not visible");
     }
 
     @And("^Close Browser$")
@@ -553,7 +553,7 @@ public class PersonalWalletSteps {
 
     @And("^\"([^\"]*)\" row is not visible on 'Reports' page$")
     public void rowIsNotVisibleOnReportsPage(String row) {
-        Assert.assertFalse(reportsPage.isRowVisible(row));
+        Assert.assertFalse(reportsPage.isRowVisible(row), row.concat(" is visible on report"));
     }
 
     @Then("^click 'new amount' field on 'Expenses' page$")
@@ -594,6 +594,7 @@ public class PersonalWalletSteps {
         softAssert.assertTrue(expensesPage.isRegisterCategorySelectorVisible(), "Register Expenses category selector is not visible");
         softAssert.assertTrue(expensesPage.isRegisterAmountFieldVisible(), "Register Expenses amount field is not visible");
         softAssert.assertTrue(expensesPage.isRegisterDateFieldVisible(), "Register Expenses date field is not visible");
+        softAssert.assertTrue(expensesPage.isRegisterTransactionButtonVisible(), "'Register transaction' button is not visible");
         softAssert.assertAll();
     }
 
@@ -617,6 +618,7 @@ public class PersonalWalletSteps {
         softAssert.assertTrue(expensesPage.isModifyNewDateFieldVIsible(), "Modify Expenses new Date Field is not visible");
         softAssert.assertTrue(expensesPage.isModifyNewCategorySelectorVisible(), "Modify Expenses new Category selector is not visible");
         softAssert.assertTrue(expensesPage.isModifyNewAmountFieldVisible(), "Modify Expenses new amount field is not visible");
+        softAssert.assertTrue(expensesPage.isRegisterChangesButtonVisible(), "Register changes button is not visible");
         softAssert.assertAll();
     }
 }

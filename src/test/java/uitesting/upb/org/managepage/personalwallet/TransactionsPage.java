@@ -87,6 +87,14 @@ public class TransactionsPage extends BasePage {
     @FindBy (xpath = "//*[@class=\"card card-category p-5 mt-3\"]/h2[contains(.,\"Register Category\")]")
     private WebElement registerCategoryTitle;
 
+    public boolean isRegisterChangesButtonVisible () {
+        return Events.isWebElementVisible(registerChangesButton);
+    }
+
+    public boolean isRegisterTransactionButtonVisible () {
+        return Events.isWebElementVisible(transactionButton);
+    }
+
     public boolean isModifyOldNameSelectorVisible () {
         return Events.isWebElementVisible(oldNameField);
     }
