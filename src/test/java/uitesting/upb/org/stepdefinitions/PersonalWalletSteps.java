@@ -1,6 +1,7 @@
 package uitesting.upb.org.stepdefinitions;
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -623,5 +624,10 @@ public class PersonalWalletSteps {
     @Then("^click 'Exit' button on 'Income' page\\.$")
     public void clickExitButtonOnIncomePage() {
         accountHomeMenu = incomePage.clickexitButton();
+    }
+
+    @Then("^table on 'Report' page should show \"([^\"]*)\" transaction type on category column, second row$")
+    public void tableOnReportPageShouldShowTransactionTypeOnCategoryColumnSecondRow(String arg0) throws Throwable {
+
     }
 }
