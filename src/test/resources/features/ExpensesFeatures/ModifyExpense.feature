@@ -22,9 +22,9 @@ Feature: Modify Expense Feature
     Then Search 'transaction success' alert on 'Expenses' page
     And click 'PersonalWallet' button on 'Header' page
 
-    Scenario: 'Modify Expenses' elements are properly displayed
-      Given click 'Expenses' button on 'MainMenu' page
-      Then 'Modify Exepenses' elements should be properly displayed
+  Scenario: 'Modify Expenses' elements are properly displayed
+    Given click 'Expenses' button on 'MainMenu' page
+    Then 'Modify Exepenses' elements should be properly displayed
 
   Scenario: Change a transaction
     Given click 'Expenses' button on 'MainMenu' page
@@ -49,13 +49,13 @@ Feature: Modify Expense Feature
     Then Search 'changeFail' alert on 'Expenses page'
     And click 'PersonalWallet' button on 'Header' page
     Examples:
-      | Name          | new Name        | new Category | new Amount | new Date   |
-      | Prueba        |                 | Others       | 1          | 05/23/2019 |
-      | Prueba        | EmptyDateError  | Others       | 1          |            |
-      | Prueba        | Prueba          | Others       | 1          | 05/23/2019 |
-      | Prueba        | NegativeWrong   | Others       | -10        | 05/23/2019 |
-      | Prueba        | HugeWrong       | Others       | 100000     | 05/23/2019 |
-      | Prueba        | EmptyAWrong     | Others       |            | 05/23/2019 |
-      |               | EmptyNameWrong  | Others       | 1          | 05/23/2019 |
-      | Prueba        | EmptyCatWtrong  |              | 1          | 05/23/2019 |
-      | Prueba        | WrongZeroAmount | Others       | 0          | 05/23/2019 |
+      | Name   | new Name        | new Category | new Amount | new Date   |
+      | Prueba |                 | Others       | 1          | 05/23/2019 |
+      | Prueba | EmptyDateError  | Others       | 1          |            |
+      | Prueba | Prueba          | Others       | 1          | 05/23/2019 |
+      | Prueba | NegativeWrong   | Others       | -10        | 05/23/2019 |
+      | Prueba | HugeWrong       | Others       | 100000     | 05/23/2019 |
+      | Prueba | EmptyAWrong     | Others       |            | 05/23/2019 |
+      |        | EmptyNameWrong  | Others       | 1          | 05/23/2019 |
+      | Prueba | EmptyCatWtrong  |              | 1          | 05/23/2019 |
+      | Prueba | WrongZeroAmount | Others       | 0          | 05/23/2019 |

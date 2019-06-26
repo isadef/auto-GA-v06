@@ -1,18 +1,12 @@
 package uitesting.upb.org.manageevents;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import uitesting.upb.org.webdrivermanager.DriverManager;
 
 import java.util.List;
-
-/**
- * @autor Marcelo Garay
- */
 
 public class Events {
     public static void click(WebElement webElement){
