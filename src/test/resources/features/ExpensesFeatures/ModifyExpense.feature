@@ -59,8 +59,3 @@ Feature: Modify Expense Feature
       |               | EmptyNameWrong  | Others       | 1          | 05/23/2019 |
       | Prueba        | EmptyCatWtrong  |              | 1          | 05/23/2019 |
       | Prueba        | WrongZeroAmount | Others       | 0          | 05/23/2019 |
-
-    Scenario: 'New Amount' field stars empty
-      Given click 'Expenses' button on 'MainMenu' page
-      Then click 'new amount' field on 'Expenses' page
-      And 'new amount' field should be empty on 'Expenses' page
