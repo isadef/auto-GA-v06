@@ -43,6 +43,9 @@ public class TransactionsPage extends BasePage {
     @FindBy(xpath = "//nav//form//a")
     private WebElement exitButton;
 
+    @FindBy(id = "exit")
+    private WebElement ExitButton;
+
     @FindBy(id = "transactionSuccess")
     protected WebElement transactionSuccessAlert;
     @FindBy(id = "settings")
@@ -244,6 +247,11 @@ public class TransactionsPage extends BasePage {
 
     public AccountHomeMenu clickExitButton() {
         Events.click(exitButton);
+        return new AccountHomeMenu();
+    }
+
+    public AccountHomeMenu clickexitButton() {
+        Events.click(ExitButton);
         return new AccountHomeMenu();
     }
 

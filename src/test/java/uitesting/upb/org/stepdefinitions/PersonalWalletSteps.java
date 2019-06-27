@@ -1,6 +1,7 @@
 package uitesting.upb.org.stepdefinitions;
 
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -240,11 +241,6 @@ public class PersonalWalletSteps {
     @And("^select \"([^\"]*)\" value on 'Destination Account' selector on 'Transfer' Page$")
     public void selectTheValueOnDestinationAccountSelectorOnTransferPage(String accountDestination) {
         transferPage = transferPage.selectAccountDestination(accountDestination);
-    }
-
-    @Then("^click 'Exit' button on 'Income' page$")
-    public void clickTheExitButtonOnTheIncomePage() {
-        accountHomeMenu = incomePage.clickExitButton();
     }
 
     @And("^fill 'category name' field with \"([^\"]*)\" on 'Income page'$")
@@ -584,6 +580,11 @@ public class PersonalWalletSteps {
     public void changeNameButtonIsVisible() {
         Assert.assertTrue(accountSettingsPage.changeNameButtonIsVisible());
     }
+//    @After
+//    public void clearLocalStorage () {
+//        System.out.println("Deleting storage");
+//        DriverManager.getInstance().clearLocalStorge();
+//    }
 
     @After
     public void clearLocalStorage() {
@@ -626,6 +627,11 @@ public class PersonalWalletSteps {
         softAssert.assertTrue(expensesPage.isModifyNewAmountFieldVisible(), "Modify Expenses new amount field is not visible");
         softAssert.assertTrue(expensesPage.isRegisterChangesButtonVisible(), "Register changes button is not visible");
         softAssert.assertAll();
+    }
+
+    @Then("^table on 'Report' page should show \"([^\"]*)\" transaction type on category column, second row$")
+    public void tableOnReportPageShouldShowTransactionTypeOnCategoryColumnSecondRow(String typeTransaction) throws Throwable {
+        Assert.assertEquals(reportsPage.getCategoryTypeText(), typeTransaction);
     }
 
     @Then("^'x' button should be visible in \"([^\"]*)\" row on 'Reports' page$")
