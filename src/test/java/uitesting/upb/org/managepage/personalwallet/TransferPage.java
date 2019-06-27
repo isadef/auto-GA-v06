@@ -52,4 +52,6 @@ public class TransferPage extends BasePage {
     public boolean isTransferButtonVisible() {return Events.isWebElementVisible(transferButton);}
 
     public boolean isBudgetAvailableFieldVisible() {return Events.isWebElementVisible(budgetFieldDisplay);}
+
+    public String getBudgetAvailableField() {return  Events.getText(budgetFieldDisplay);}
 }

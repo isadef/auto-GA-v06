@@ -586,11 +586,11 @@ public class PersonalWalletSteps {
 //        DriverManager.getInstance().clearLocalStorge();
 //    }
 
-    @After
-    public void clearLocalStorage() {
-        System.out.println("Deleting storage");
-        DriverManager.getInstance().clearLocalStorge();
-    }
+//    @After
+//    public void clearLocalStorage() {
+//        System.out.println("Deleting storage");
+//        DriverManager.getInstance().clearLocalStorge();
+//    }
 
     @Then("^'Register Exepenses' elements should be properly displayed$")
     public void registerExepensesElementsShouldBeProperlyDisplayed() {
