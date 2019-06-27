@@ -33,6 +33,10 @@ public class ReportsPage extends BasePage {
     @FindBy(xpath = "//table")
     private WebElement reportsTable;
 
+    @FindBy(xpath = "//SPAN[@data-v-4edbbc7e=''][text()='Transfer']" )
+    private WebElement categoryColumnTransferData;
+
+
     public String getTitle() {
         return title.getText();
     }
@@ -112,4 +116,9 @@ public class ReportsPage extends BasePage {
         Events.click(webElement);
         return this;
     }
+
+    public String getCategoryTypeText(){
+        return Events.getText(categoryColumnTransferData);
+    }
+
 }

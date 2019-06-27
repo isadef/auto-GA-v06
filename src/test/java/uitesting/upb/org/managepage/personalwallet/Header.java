@@ -10,7 +10,7 @@ public class Header extends BasePage {
     @FindBy(xpath = "//a[@class='navbar-brand']")
     private WebElement personalWalletButton;
 
-    @FindBy(xpath = "//nav//form//a")
+    @FindBy(id = "exit")
     private WebElement exitButton;
 
     @FindBy (id = "settings")

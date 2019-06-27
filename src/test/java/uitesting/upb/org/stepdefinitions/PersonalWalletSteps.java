@@ -242,11 +242,6 @@ public class PersonalWalletSteps {
         transferPage = transferPage.selectAccountDestination(accountDestination);
     }
 
-    @Then("^click 'Exit' button on 'Income' page$")
-    public void clickTheExitButtonOnTheIncomePage() {
-        accountHomeMenu = incomePage.clickExitButton();
-    }
-
     @And("^fill 'category name' field with \"([^\"]*)\" on 'Income page'$")
     public void fillCategoryNameFieldWithOnIncomePage(String name)   {
         incomePage = (IncomePage) incomePage.fillCategoryRegisterField(name);
@@ -619,11 +614,6 @@ public class PersonalWalletSteps {
         softAssert.assertTrue(expensesPage.isModifyNewCategorySelectorVisible(), "Modify Expenses new Category selector is not visible");
         softAssert.assertTrue(expensesPage.isModifyNewAmountFieldVisible(), "Modify Expenses new amount field is not visible");
         softAssert.assertAll();
-    }
-
-    @Then("^click 'Exit' button on 'Income' page\\.$")
-    public void clickExitButtonOnIncomePage() {
-        accountHomeMenu = incomePage.clickexitButton();
     }
 
     @Then("^table on 'Report' page should show \"([^\"]*)\" transaction type on category column, second row$")
