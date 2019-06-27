@@ -121,4 +121,8 @@ public class ReportsPage extends BasePage {
         return Events.getText(categoryColumnTransferData);
     }
 
+    public boolean isXButtonVisibleInRow (String row) {
+        WebElement webElement = Events.getElementByBy(new By.ByXPath("//*/tbody/tr[td [contains(.,'" + row + "')]]/button"));
+        return Events.isWebElementVisible(webElement);
+    }
 }

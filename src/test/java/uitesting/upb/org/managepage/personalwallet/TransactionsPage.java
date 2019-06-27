@@ -76,49 +76,57 @@ public class TransactionsPage extends BasePage {
     protected WebElement registerChangesButton;
 
     @FindBy(xpath = "//a[@class='navbar-brand']")
-    private WebElement personalWalletLink;
+    protected WebElement personalWalletLink;
 
-    @FindBy (id = "old-name")
-    private WebElement transactionNameSelector;
+    @FindBy(id = "old-name")
+    protected WebElement transactionNameSelector;
 
-    @FindBy (xpath = "//*[@class=\"card p-5 mt-3\"]/h2[not(contains(.,\"Modify\"))]")
-    private WebElement registerTransactionTitle;
+    @FindBy(xpath = "//*[@class=\"card p-5 mt-3\"]/h2[not(contains(.,\"Modify\"))]")
+    protected WebElement registerTransactionTitle;
 
     @FindBy(xpath = "//*[@class=\"card p-5 mt-3\"]/h2[contains(.,\"Modify\")]")
-    private WebElement modifyTransactionTitle;
+    protected WebElement modifyTransactionTitle;
 
-    @FindBy (xpath = "//*[@class=\"card card-category p-5 mt-3\"]/h2[contains(.,\"Register Category\")]")
-    private WebElement registerCategoryTitle;
+    @FindBy(xpath = "//*[@class=\"card card-category p-5 mt-3\"]/h2[contains(.,\"Register Category\")]")
+    protected WebElement registerCategoryTitle;
 
-    public boolean isModifyOldNameSelectorVisible () {
+    public boolean isRegisterChangesButtonVisible() {
+        return Events.isWebElementVisible(registerChangesButton);
+    }
+
+    public boolean isRegisterTransactionButtonVisible() {
+        return Events.isWebElementVisible(transactionButton);
+    }
+
+    public boolean isModifyOldNameSelectorVisible() {
         return Events.isWebElementVisible(oldNameField);
     }
 
-    public boolean isModifyNewNameFieldVisible () {
+    public boolean isModifyNewNameFieldVisible() {
         return Events.isWebElementVisible(newNameField);
     }
 
-    public boolean isModifyNewCategorySelectorVisible () {
+    public boolean isModifyNewCategorySelectorVisible() {
         return Events.isWebElementVisible(newCategoryField);
     }
 
-    public boolean isModifyNewDateFieldVIsible () {
+    public boolean isModifyNewDateFieldVIsible() {
         return Events.isWebElementVisible(newDateField);
     }
 
-    public boolean isModifyNewAmountFieldVisible () {
+    public boolean isModifyNewAmountFieldVisible() {
         return Events.isWebElementVisible(newAmountField);
     }
 
-    public boolean isRegisterCategoryTitleVisible () {
-        return  Events.isWebElementVisible(registerCategoryTitle);
+    public boolean isRegisterCategoryTitleVisible() {
+        return Events.isWebElementVisible(registerCategoryTitle);
     }
 
-    public boolean isCategoryRegisterFieldVisible () {
+    public boolean isCategoryRegisterFieldVisible() {
         return Events.isWebElementVisible(categoryRegisterField);
     }
 
-    public boolean isCategoryRegisterButtonVisible () {
+    public boolean isCategoryRegisterButtonVisible() {
         return Events.isWebElementVisible(catergoryButton);
     }
 
@@ -126,44 +134,44 @@ public class TransactionsPage extends BasePage {
         return Events.isWebElementVisible(transactionNameField);
     }
 
-    public boolean isRegisterCategorySelectorVisible () {
+    public boolean isRegisterCategorySelectorVisible() {
         return Events.isWebElementVisible(categorySelector);
     }
 
-    public boolean isRegisterAmountFieldVisible () {
+    public boolean isRegisterAmountFieldVisible() {
         return Events.isWebElementVisible(amountField);
     }
 
-    public boolean isRegisterDateFieldVisible () {
+    public boolean isRegisterDateFieldVisible() {
         return Events.isWebElementVisible(dateField);
     }
 
-    public String getRegisterCategoryTitle () {
+    public String getRegisterCategoryTitle() {
         return Events.getText(registerCategoryTitle);
     }
 
-    public String getModifyTransactionTitle () {
+    public String getModifyTransactionTitle() {
         return Events.getText(modifyTransactionTitle);
     }
 
-    public boolean isModifyTransactionTitleVisible () {
+    public boolean isModifyTransactionTitleVisible() {
         return Events.isWebElementVisible(modifyTransactionTitle);
     }
 
-    public boolean isRegisterTransactionTitleVisible () {
+    public boolean isRegisterTransactionTitleVisible() {
         return Events.isWebElementVisible(registerTransactionTitle);
     }
 
-    public String getRegisterTransactionTitleText () {
+    public String getRegisterTransactionTitleText() {
         return Events.getText(registerTransactionTitle);
     }
 
-    public TransactionsPage selectTransactionName (String option) {
+    public TransactionsPage selectTransactionName(String option) {
         Events.selectOptionInSelectElementByVisibleText(new Select(transactionNameSelector), option);
         return this;
     }
 
-    public TransactionsPage clearCategoryNameField () {
+    public TransactionsPage clearCategoryNameField() {
         Events.clearElement(categoryRegisterField);
         return this;
     }
@@ -176,11 +184,11 @@ public class TransactionsPage extends BasePage {
         return Events.isWebElementVisible(categoryFailAlert);
     }
 
-    public int getCategorySelectorNumberOptions () {
-     return Events.getSelectorNumberOptions(new Select(categorySelector));
+    public int getCategorySelectorNumberOptions() {
+        return Events.getSelectorNumberOptions(new Select(categorySelector));
     }
 
-    public int getTransactionNameSelectorNumberOptions () {
+    public int getTransactionNameSelectorNumberOptions() {
         return Events.getSelectorNumberOptions(new Select(transactionNameSelector));
     }
 
@@ -190,7 +198,7 @@ public class TransactionsPage extends BasePage {
 
     public TransactionsPage fillAmountField(String amount) {
         Events.clearElement(amountField);
-       Events.fillField(amountField,amount);
+        Events.fillField(amountField, amount);
         return this;
     }
 
@@ -256,12 +264,12 @@ public class TransactionsPage extends BasePage {
         return Events.isWebElementVisible(changeSuccesAlert);
     }
 
-    public TransactionsPage clickNewAmountField () {
+    public TransactionsPage clickNewAmountField() {
         Events.click(newAmountField);
         return this;
     }
 
-    public String getNewAmountFieldText () {
+    public String getNewAmountFieldText() {
         return Events.getText(newAmountField);
     }
 
